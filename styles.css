@@ -80,3 +80,39 @@ button,input{font:inherit}
 .category:hover{transform:translateY(-2px)}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 @media(max-width:760px){.game-art-new{height:132px}}
+
+/* Premium arcade homepage inspired by modern game portals */
+body{background:radial-gradient(ellipse at 78% 8%,#18254a55,transparent 35%),#090d1b}
+.topbar{background:#080d1beF;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff12}
+.hero{min-height:560px;padding-top:90px;padding-bottom:95px;position:relative}
+.hero:after{content:"";position:absolute;z-index:-1;left:0;right:0;bottom:20px;height:1px;background:linear-gradient(90deg,transparent,#53658d66,transparent)}
+.hero-copy{position:relative;z-index:2}
+.hero-copy h1{font-size:clamp(54px,7vw,88px);line-height:.98;max-width:650px}
+.hero-copy>p{font-size:17px;max-width:430px;color:#aebbd5}
+.hero .primary{padding:17px 23px;border-radius:10px;box-shadow:0 12px 38px #56e5dc33;transition:transform .22s,box-shadow .22s}
+.hero .primary:hover{transform:translateY(-3px);box-shadow:0 16px 42px #56e5dc55}
+.hero-art{height:390px;filter:drop-shadow(0 28px 40px #0008)}
+.hero-core{width:160px;height:160px;border-radius:38px;box-shadow:0 0 0 12px #ffffff08,0 0 90px #6c8eff66,0 22px 55px #0009;animation:coreHover 4s ease-in-out infinite}
+@keyframes coreHover{0%,100%{translate:0 0;rotate:-9deg}50%{translate:0 -13px;rotate:-4deg}}
+.orbit{border-color:#7b91c044;box-shadow:0 0 28px #6d7eff12}
+.game-tile{width:100px;height:100px;border-radius:24px;background:linear-gradient(145deg,#29395d,#111a30);border:1px solid #9db3df38;box-shadow:0 20px 48px #0009,inset 0 1px #ffffff18}
+.tile-one{left:12%;top:5px}.tile-two{right:3%;top:100px}.tile-three{left:25%;bottom:0}
+.section{padding-top:48px;padding-bottom:58px}
+.section-head{margin-bottom:27px}
+.section-head h2,.join h2{font-size:clamp(29px,3vw,38px)}
+.categories{gap:10px}
+.category{padding:13px 20px;border-radius:10px;background:linear-gradient(145deg,#151f36,#0e1628);font-size:15px}
+.category.active{background:linear-gradient(110deg,#15363e,#202044);box-shadow:0 6px 20px #55e5dc18}
+.games-section{padding-top:48px}
+.games-grid{gap:20px}
+.game-card{padding:14px;border-radius:16px;background:linear-gradient(145deg,#18233b,#0e1628 75%);border-color:#2c3b5c;box-shadow:0 12px 30px #0003}
+.game-art-new{height:174px;border-radius:11px;margin-bottom:17px}
+.game-card h3{font-size:19px;letter-spacing:-.3px}
+.game-card p{font-size:13px;line-height:1.6;color:#aab8d2}
+.game-meta{font-size:9px;letter-spacing:1.4px}
+.play{min-height:42px;border:1px solid #ffffff0c;background:#202f4c;color:#6cebe3}
+.join{position:relative;overflow:hidden;background:radial-gradient(ellipse at 82% 30%,#4a438b88,transparent 44%),linear-gradient(115deg,#182744,#111a31);box-shadow:0 24px 60px #0005}
+.join:after{content:"NP";position:absolute;right:28%;top:-65px;font:900 210px 'Space Grotesk';color:#ffffff08;pointer-events:none}
+footer{background:#080d19}
+@media(max-width:760px){.hero{min-height:unset;padding-top:60px;padding-bottom:45px}.hero-copy h1{font-size:clamp(47px,11vw,68px)}.hero-art{height:280px;margin-top:12px}.game-art-new{height:145px}.section{padding-top:35px;padding-bottom:40px}}
+@media(max-width:430px){.hero-art{transform:scale(.78);margin:-5px -38px;height:230px}.game-art-new{height:140px}}
