@@ -116,3 +116,25 @@ body{background:radial-gradient(ellipse at 78% 8%,#18254a55,transparent 35%),#09
 footer{background:#080d19}
 @media(max-width:760px){.hero{min-height:unset;padding-top:60px;padding-bottom:45px}.hero-copy h1{font-size:clamp(47px,11vw,68px)}.hero-art{height:280px;margin-top:12px}.game-art-new{height:145px}.section{padding-top:35px;padding-bottom:40px}}
 @media(max-width:430px){.hero-art{transform:scale(.78);margin:-5px -38px;height:230px}.game-art-new{height:140px}}
+
+/* Extra games: consistent responsive arcade play areas */
+.arcade-canvas{display:block;width:100%;max-width:560px;height:auto;aspect-ratio:560/300;margin:14px auto;border:1px solid #344766;border-radius:13px;box-shadow:0 12px 30px #0005}
+#asteroids.arcade-canvas{aspect-ratio:560/320}
+.pulse-field{height:300px;position:relative;overflow:hidden;background:radial-gradient(circle at center,#1b2d4b,#0b1325)}
+.pulse-target{position:absolute;width:42px;height:42px;border:3px solid #d7ffff;border-radius:50%;background:radial-gradient(circle,#8dfff3,#19a9b9);box-shadow:0 0 24px #55e5dc;cursor:pointer;animation:pulsePop .45s ease-out}
+@keyframes pulsePop{from{transform:scale(.4);opacity:.4}to{transform:scale(1);opacity:1}}
+.merge-board{display:grid;grid-template-columns:repeat(4,minmax(48px,76px));gap:8px;justify-content:center;padding:12px;margin:14px auto;background:#101a30;border:1px solid #344766;border-radius:14px;width:max-content}
+.merge-cell{width:clamp(48px,12vw,76px);height:clamp(48px,12vw,76px);display:grid;place-items:center;border-radius:9px;background:#202e49;color:#dce8ff;font-size:22px;font-weight:900}
+.merge-cell.v2{background:#35536b}.merge-cell.v4{background:#356c78}.merge-cell.v8{background:#447f91}.merge-cell.v16{background:#5b6bb1}.merge-cell.v32,.merge-cell.v64{background:#7565ba}.merge-cell.v128,.merge-cell.v256,.merge-cell.v512{background:#9b78c7;color:#101326}
+.memory-board{display:grid;grid-template-columns:repeat(3,82px);gap:9px;justify-content:center;margin:18px auto}
+.memory-cell{height:82px;border:1px solid #53698d;border-radius:12px;background:linear-gradient(145deg,#253958,#15223a);cursor:pointer;transition:background .12s,box-shadow .12s}
+.memory-cell.lit{background:#55e5dc;box-shadow:0 0 30px #55e5dc;border-color:white}
+.sky-field{height:280px;position:relative;overflow:hidden;background:linear-gradient(#1a2c4b,#0d1528)}
+.sky-player{position:absolute;width:24px;height:26px;border-radius:6px;background:#55e5dc;border:2px solid white}
+.sky-platform{position:absolute;height:9px;border-radius:6px;background:#9183ff;box-shadow:0 0 14px #9183ff66}
+.code-inputs{display:flex;justify-content:center;gap:10px;margin:18px 0}
+.code-inputs input{width:130px;padding:12px;border:1px solid #405477;border-radius:9px;background:#101a30;color:white;font-size:22px;letter-spacing:8px;text-align:center}
+.code-inputs button{padding:10px 18px;border:0;border-radius:9px;background:#55e5dc;color:#081321;font-weight:800}
+.code-history{max-height:150px;overflow:auto;text-align:center;color:#c3cfe4}
+.game-result{padding:65px 10px;text-align:center;color:#55e5dc}
+@media(max-width:430px){.memory-board{grid-template-columns:repeat(3, minmax(65px,1fr));max-width:245px}.memory-cell{height:68px}}
