@@ -9,8 +9,8 @@
 </head>
 <body>
 <header class="topbar"><a class="brand" href="#inicio"><span class="brand-icon">✦</span><span>Nex<span>Play</span></span></a>
-<nav><a class="nav-active" href="#inicio">Inicio</a><a href="#categorias">Categorías</a><a href="#juegos">Top juegos</a><a href="#juegos">Favoritos</a></nav>
-<label class="search top-search"><span>⌕</span><input id="search" type="search" placeholder="Buscar juegos..." aria-label="Buscar juegos"></label><button class="moon" aria-label="Cambiar tema">◐</button>
+<nav><a class="nav-active" href="#inicio">Inicio</a><a href="#categorias">Categorías</a><a href="#juegos">Top juegos</a><a href="#juegos" id="favorites-link">Favoritos</a></nav>
+<button class="google-login" id="google-login" type="button">Entrar con Google</button><span id="account-status" class="account-status">Invitado</span><label class="search top-search"><span>⌕</span><input id="search" type="search" placeholder="Buscar juegos..." aria-label="Buscar juegos"></label><button class="moon" aria-label="Cambiar tema">◐</button>
 </header>
 <main id="inicio">
 <section class="hero"><div class="hero-copy"><div class="hero-kicker">TU PORTAL DE JUEGOS ONLINE</div><h1>¡Bienvenido a<br><span>NexPlay!</span></h1><p>Juega, compite y descubre nuevos desafíos. Tu próxima partida empieza aquí.</p><a class="hero-button" href="#juegos">▶ &nbsp; Empezar a jugar</a><div class="hero-meta">JUEGA GRATIS <i></i> SIN DESCARGAS <i></i> SIEMPRE DISPONIBLE</div></div>
@@ -22,6 +22,6 @@
 <section class="bottom-banner"><div><span>¿LISTO PARA EL SIGUIENTE NIVEL?</span><h2>Encuentra tu próximo juego favorito.</h2></div><a class="hero-button" href="#juegos">Explorar juegos →</a></section>
 </main>
 <footer><a class="brand" href="#inicio"><span class="brand-icon">✦</span><span>Nex<span>Play</span></span></a><p>Tu portal de juegos online.</p><small>© <span id="year"></span> NexPlay</small></footer>
-<div class="modal" id="modal" aria-hidden="true"><div class="modal-panel"><div class="modal-head"><div><span class="section-kicker" id="game-category">NEXPLAY ORIGINAL</span><h2 id="game-title">Juego</h2></div><button class="close" id="close" aria-label="Cerrar">×</button></div><div id="game-area" class="game-area"></div></div></div>
+<div class="modal" id="modal" aria-hidden="true"><div class="modal-panel"><div class="modal-head"><div class="modal-title"><span class="section-kicker" id="game-category">NEXPLAY ORIGINAL</span><h2 id="game-title">Juego</h2></div><div class="player-tools"><button id="like-game" class="vote-btn" type="button" aria-label="Me gusta">👍 <span>Me gusta</span> <b id="like-count">0</b></button><button id="dislike-game" class="vote-btn" type="button" aria-label="No me gusta">👎 <span>No me gusta</span> <b id="dislike-count">0</b></button><button id="favorite-game" class="favorite-btn" type="button" aria-label="Guardar en favoritos">♡ <span>Favorito</span></button><button id="fullscreen-game" class="fullscreen-btn" type="button">⛶ <span>Pantalla completa</span></button><button class="close" id="close" aria-label="Cerrar">×</button></div></div><div id="game-area" class="game-area"></div></div></div>
 <script src="games.js?v=20261107-8"></script>
 </body></html>
