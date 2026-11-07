@@ -110,3 +110,26 @@
 @media(max-width:900px){.google-login{padding:8px 10px}.account-status{display:none}.player-tools{gap:5px}.vote-btn,.favorite-btn,.fullscreen-btn{padding:8px}}
 @media(max-width:600px){.modal-head{align-items:flex-start;flex-direction:column}.player-tools{width:100%;justify-content:flex-start}.vote-btn span,.favorite-btn span,.fullscreen-btn span{display:none}.game-area{justify-content:flex-start}.arena-scene{min-height:52vh}}
 @media(prefers-reduced-motion:reduce){.game-card,.game-card:hover,.game-action,.vote-btn,.favorite-btn,.fullscreen-btn{transition:none!important;transform:none!important}}
+
+/* NexPlay dark neon visual direction: no white controls */
+.google-login{background:linear-gradient(110deg,#20143f,#102b4b);color:#eafaff;border:1px solid #4b55a0;box-shadow:0 0 18px #7038ff33}
+.google-login:hover{background:linear-gradient(110deg,#422078,#07506b);box-shadow:0 0 26px #24d9ee55}
+:root{--bg:#070b18;--panel:#10182d;--text:#f4f6ff;--muted:#9baaca;--purple:#9b4dff;--cyan:#29e0ed}
+body{background:radial-gradient(ellipse at 50% -18%,#1c2450 0,transparent 45%),#070b18}
+.topbar{background:#080d1df2}
+.hero{background:radial-gradient(ellipse at 77% 50%,#39216e 0,#102c50 37%,#070b18 76%)}
+.games-grid{gap:18px}
+.game-card{background:linear-gradient(155deg,#172544,#0c1327 72%);border:1px solid #34466e;box-shadow:0 12px 30px #0007}
+.game-card:hover{transform:translateY(-9px) scale(1.035);border-color:#4de4ef;box-shadow:0 18px 42px #000a,0 0 28px #713cff55}
+.game-art{height:174px;background-image:radial-gradient(circle at 75% 22%,#ffffff18,transparent 36%),linear-gradient(140deg,#152a52,#251044 58%,#071525)}
+.game-art:before{filter:saturate(1.4) drop-shadow(0 14px 24px #000b)}
+.game-info{background:linear-gradient(180deg,#111d38,#0a1225)}
+.play{background:linear-gradient(105deg,#6327c7,#155c83);border:1px solid #4c72a9;color:#fff;box-shadow:inset 0 1px #ffffff22}
+.play:hover{background:linear-gradient(100deg,#a12cff,#078eae);box-shadow:0 0 20px #7e36ff66}
+.category{background:linear-gradient(145deg,#131f3a,#0b1428);border-color:#30466d}
+.category.active,.category:hover{background:linear-gradient(100deg,#7627d8,#075e7a);border-color:#54d9ec}
+.modal-panel{background:#070d1c}
+.modal-head{background:linear-gradient(100deg,#111a34,#15102e);border-bottom:1px solid #35456b}
+.game-area{background:radial-gradient(ellipse at 50% 20%,#182c52,#070d1c 72%)}
+.challenge-board{background:linear-gradient(145deg,#15284a,#0a1225);border-color:#405985}
+.vote-btn,.favorite-btn,.fullscreen-btn{background:linear-gradient(145deg,#172746,#0c1730);border-color:#40547d;color:#f3f5ff}
