@@ -63,3 +63,50 @@
 .game-action{font-size:16px;padding:15px 28px}
 .arcade-canvas,.playfield{width:min(1100px,100%);max-height:68vh}
 @media(max-width:760px){.game-art{height:130px}.modal-head{padding:10px 14px}.game-area{padding:12px}.challenge-board{min-height:55vh}}
+
+
+/* NexPlay 2.0: polished game portal, interaction states and immersive player */
+.google-login{border:1px solid #53678e;background:linear-gradient(110deg,#f7f9ff,#dce7ff);color:#182342;border-radius:24px;padding:10px 14px;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap;transition:.2s}
+.google-login:hover{transform:translateY(-2px);box-shadow:0 8px 24px #7897ff55}
+.account-status{font-size:10px;color:#9fb0d5;white-space:nowrap}
+.modal-head{gap:14px;align-items:center}
+.modal-title{min-width:150px}
+.player-tools{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.vote-btn,.favorite-btn,.fullscreen-btn{border:1px solid #394d72;background:#142343;color:#eaf1ff;border-radius:10px;padding:10px 12px;font-size:12px;font-weight:800;cursor:pointer;transition:.2s}
+.vote-btn:hover,.favorite-btn:hover,.fullscreen-btn:hover{transform:translateY(-2px);border-color:#53ddeb;background:#1b3159}
+.vote-btn b{color:#7fe8f2;margin-left:3px}
+.vote-btn.active{background:#164b56;border-color:#35d9d0;color:#fff}
+.vote-btn.dislike-active{background:#512a49;border-color:#ff6b9e}
+.favorite-btn{font-size:19px;color:#ff729c}
+.favorite-btn span,.fullscreen-btn span{font-size:11px;color:#eaf1ff}
+.favorite-btn.active{background:#52223e;border-color:#ff5c91}
+.fullscreen-btn{font-size:17px}
+.game-card{transform-style:preserve-3d}
+.game-card:focus-within{outline:2px solid #45ddeb;outline-offset:3px}
+.game-art{height:178px}
+.game-art:before{filter:saturate(1.25) drop-shadow(0 15px 20px #0008)}
+.game-card:hover .game-art:after{transform:rotate(18deg) scale(1.08);box-shadow:0 0 38px #9ceeff88}
+.game-info{background:linear-gradient(180deg,#111c37,#0c152b)}
+.game-info h3{font-size:16px}
+.game-area{position:relative}
+.game-area:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,#37c9ed12,transparent 55%)}
+.game-area>*{position:relative}
+.game-status{padding:9px 16px;border-radius:30px;background:#14294a;border:1px solid #35527d;box-shadow:0 6px 24px #0004}
+.challenge-board{border-radius:20px;background:linear-gradient(145deg,#182d52,#0a1429);box-shadow:inset 0 1px #ffffff12,0 20px 55px #0005}
+.challenge-grid button{background:linear-gradient(145deg,#2a426b,#172849);border:1px solid #58729b;box-shadow:0 4px 0 #0b1427;transition:transform .12s,filter .12s}
+.challenge-grid button:hover{filter:brightness(1.25);transform:translateY(-2px)}
+.challenge-grid button:active{transform:translateY(2px);box-shadow:none}
+.game-action{box-shadow:0 8px 24px #712bff55}
+.game-action:hover{filter:brightness(1.15);transform:translateY(-2px)}
+#game-area .arena-scene{width:min(1000px,100%);min-height:45vh;border-radius:18px;position:relative;overflow:hidden;border:1px solid #49658e;background:linear-gradient(150deg,#183d68,#101a39 60%,#25184a);box-shadow:inset 0 0 60px #43d7ff18,0 20px 55px #0006}
+.arena-scene .arena-ground{position:absolute;left:0;right:0;bottom:0;height:28%;background:repeating-linear-gradient(90deg,#243958 0 48px,#2c4569 49px 51px);border-top:3px solid #64dff0}
+.arena-scene .arena-object{position:absolute;display:grid;place-items:center;border:2px solid #d9f7ff;border-radius:15px;background:linear-gradient(145deg,#56e7f3,#3157bb);box-shadow:0 12px 28px #0007,0 0 24px #44d8ff66;color:#fff;font-weight:900}
+.arena-scene .arena-object.target{border-radius:50%;background:radial-gradient(circle at 30% 25%,#fff,#ffb64a 25%,#f14f85 70%);border:3px solid #ffe3b3}
+.arena-controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:12px}
+.arena-controls button{min-width:80px}
+.game-card .card-actions{display:flex;gap:6px;margin-top:7px}
+.card-actions button{flex:1;border:1px solid #35476b;background:#152441;color:#cbd8f4;border-radius:8px;padding:7px 5px;font-size:10px;font-weight:800;cursor:pointer}
+.card-actions button.active{color:#ff78a5;border-color:#ff78a5;background:#40213d}
+@media(max-width:900px){.google-login{padding:8px 10px}.account-status{display:none}.player-tools{gap:5px}.vote-btn,.favorite-btn,.fullscreen-btn{padding:8px}}
+@media(max-width:600px){.modal-head{align-items:flex-start;flex-direction:column}.player-tools{width:100%;justify-content:flex-start}.vote-btn span,.favorite-btn span,.fullscreen-btn span{display:none}.game-area{justify-content:flex-start}.arena-scene{min-height:52vh}}
+@media(prefers-reduced-motion:reduce){.game-card,.game-card:hover,.game-action,.vote-btn,.favorite-btn,.fullscreen-btn{transition:none!important;transform:none!important}}
