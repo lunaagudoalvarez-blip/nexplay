@@ -37,7 +37,53 @@ document.querySelector('#favorites-link')?.addEventListener('click',e=>{e.preven
 search.addEventListener('input',render);
 grid.addEventListener('click',e=>{const playBtn=e.target.closest('[data-game]');const fav=e.target.closest('[data-fav]');const vote=e.target.closest('[data-vote]');if(playBtn)openGame(games.find(g=>g.id===playBtn.dataset.game));if(fav)toggleFavorite(fav.dataset.fav);if(vote){state.votes[vote.dataset.id]='like';save();vote.textContent='👍 Te gusta';vote.classList.add('active');}});
 function syncTools(){if(!current)return;const v=state.votes[current.id]||'';const fav=state.favorites.includes(current.id);document.querySelector('#like-game').classList.toggle('active',v==='like');document.querySelector('#dislike-game').classList.toggle('dislike-active',v==='dislike');document.querySelector('#favorite-game').classList.toggle('active',fav);document.querySelector('#favorite-game').innerHTML=(fav?'♥':'♡')+' <span>'+(fav?'Guardado':'Favorito')+'</span>';document.querySelector('#like-count').textContent=v==='like'?'1':'0';document.querySelector('#dislike-count').textContent=v==='dislike'?'1':'0';}
-function openGame(g){if(!g)return;cleanup();cleanup=()=>{};current=g;document.querySelector('#game-title').textContent=g.name;document.querySelector('#game-category').textContent=g.category.toUpperCase()+' · NEXPLAY ORIGINAL';modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';syncTools();play(g);}
+
+const COMMENT_STORE='nexplay-comments-v1';
+let commentData={};try{commentData=JSON.parse(localStorage.getItem(COMMENT_STORE)||'{}')||{};}catch(e){}
+const playGuides={
+ race:'Objetivo: avanza y evita los obstáculos. Cambia de carril para esquivarlos y consigue tantos puntos como puedas antes de que termine el tiempo.',
+ dodge:'Muévete entre los carriles para esquivar los obstáculos. Cada movimiento correcto suma puntos; evita chocar.',
+ jump:'Usa los controles de dirección para moverte y superar los obstáculos. Calcula tus movimientos para llegar al objetivo.',
+ targets:'Haz clic o toca el objetivo cada vez que aparezca en una nueva posición. Cuantos más aciertos consigas, más puntos sumarás.',
+ blocks:'Selecciona las piezas del tablero para completar el reto y acumular puntos antes de que se agote el tiempo.',
+ memory:'Voltea dos cartas cada vez. Encuentra las parejas iguales para sumar puntos.',
+ penalty:'Elige hacia qué esquina lanzar. Si el portero se mueve a otra dirección, marcas y consigues puntos.',
+ pool:'Pulsa el botón para golpear la bola e intenta encajarla. Cada acierto aumenta tu puntuación.',
+ parking:'Usa las flechas para mover el coche. Llévalo hasta la plaza marcada sin salirte del recorrido.',
+ maze:'Encuentra el camino hasta la salida. Puedes usar las flechas del teclado o tocar las casillas disponibles.',
+ reaction:'Espera a que el botón cambie a verde y púlsalo lo más rápido posible. Si te adelantas, tendrás que intentarlo de nuevo.',
+ math:'Resuelve cada suma eligiendo la respuesta correcta. Las respuestas acertadas te dan puntos.',
+ word:'Descifra las letras, escribe la palabra correcta y pulsa Comprobar para avanzar.',
+ snake:'Mueve la ficha por el tablero con los controles o las flechas. Cada movimiento suma puntos.',
+ breaker:'Pulsa Lanzar bola para romper los bloques. Elimina todos los bloques para completar el nivel.',
+ merge:'Selecciona fichas iguales que estén juntas para combinarlas y crear valores mayores.',
+ defense:'Activa la defensa para detener las oleadas y proteger la base.'
+};
+function renderComments(){
+ if(!current)return;
+ const list=document.querySelector('#comment-list');if(!list)return;
+ const items=commentData[current.id]||[];
+ list.innerHTML=items.length?items.slice().reverse().map(item=>'<article class="comment-item"><strong>'+safe(item.name)+'</strong><p>'+safe(item.text)+'</p><time>'+safe(item.date)+'</time></article>').join(''):'<p class="no-comments">Todavía no hay comentarios. ¡Sé el primero!</p>';
+}
+function renderRecommendations(){
+ const box=document.querySelector('#game-recommendations');if(!box||!current)return;
+ const picks=games.filter(g=>g.id!==current.id).sort((a,b)=>(b.category===current.category)-(a.category===current.category)).slice(0,4);
+ box.innerHTML=picks.map(g=>'<button type="button" class="recommendation" data-recommend="'+g.id+'"><span class="recommendation-art">'+safe(g.art.slice(0,3))+'</span><span>'+safe(g.name)+'</span></button>').join('');
+}
+document.querySelector('#comment-form')?.addEventListener('submit',e=>{
+ e.preventDefault();if(!current)return;
+ const input=document.querySelector('#comment-text'),name=document.querySelector('#comment-name');
+ const value=input.value.trim();if(!value)return;
+ const entries=commentData[current.id]||(commentData[current.id]=[]);
+ entries.push({name:(name.value.trim()||'Jugador').slice(0,24),text:value.slice(0,500),date:new Date().toLocaleString('es-ES')});
+ try{localStorage.setItem(COMMENT_STORE,JSON.stringify(commentData));}catch(err){}
+ input.value='';renderComments();
+});
+document.querySelector('#game-recommendations')?.addEventListener('click',e=>{
+ const btn=e.target.closest('[data-recommend]');if(btn)openGame(games.find(g=>g.id===btn.dataset.recommend));
+});
+
+function openGame(g){if(!g)return;cleanup();cleanup=()=>{};current=g;document.querySelector('#game-title').textContent=g.name;document.querySelector('#game-category').textContent=g.category.toUpperCase()+' · NEXPLAY ORIGINAL';modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';syncTools();document.querySelector('#how-to-play').textContent=playGuides[g.mode]||g.desc+' Sigue las indicaciones de la partida y consigue la mejor puntuación.';document.querySelector('#game-controls-note').textContent='Controles: ratón o pantalla táctil. Si el juego muestra flechas, también puedes usar las teclas de dirección.';renderRecommendations();renderComments();play(g);}
 function closeGame(){cleanup();cleanup=()=>{};modal.classList.remove('open');modal.setAttribute('aria-hidden','true');area.innerHTML='';document.body.style.overflow='';current=null;}
 document.querySelector('#close').addEventListener('click',closeGame);modal.addEventListener('click',e=>{if(e.target===modal)closeGame();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeGame();});
 document.querySelector('#like-game').addEventListener('click',()=>{if(!current)return;state.votes[current.id]=state.votes[current.id]==='like'?'':'like';save();syncTools();});
