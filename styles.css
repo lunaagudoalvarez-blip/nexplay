@@ -14,3 +14,19 @@ button,input{font:inherit}
 @media(min-width:1000px){.games-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:760px){.games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.game-card{min-height:220px}}
 @media(max-width:430px){.games-grid{grid-template-columns:1fr}.game-card{min-height:190px}}
+
+/* Nueva identidad visual de los juegos originales */
+.game-art-new{height:112px;background:radial-gradient(circle at 50% 45%,#263d68,#10182b 72%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.game-art-new span{font:700 38px 'Space Grotesk';letter-spacing:3px;color:#5be5df;text-shadow:0 0 22px #55e5dc66}
+.game-art-new small{font-size:9px;letter-spacing:2px;color:#aebbd6}
+.game-card:nth-child(2n) .game-art-new{background:radial-gradient(circle at 50% 45%,#3b326d,#11182b 72%)}
+.playfield{width:100%;border:1px solid #2b3c5d;border-radius:12px;margin:14px 0;background:#101a30}
+.player-car{position:absolute;bottom:14px;transform:translateX(-50%);width:48px;height:65px;border-radius:9px;background:linear-gradient(#8b83ff,#4e4bc4);border:2px solid #d8d4ff;display:grid;place-items:center;font-size:10px;font-weight:900;color:white}
+.road-object{position:absolute;transform:translateX(-50%);width:44px;height:58px;border-radius:8px;background:#e66f86;border:2px solid #ffc0c9;display:grid;place-items:center;font-size:9px;font-weight:900;color:#1a1020}
+.road-object.energy{width:22px;height:22px;border-radius:5px;background:#55e5dc;color:#071521}
+.runner-block{position:absolute;width:27px;height:27px;background:#55e5dc;border:2px solid white;border-radius:5px}
+.runner-obstacle{position:absolute;width:25px;height:40px;background:#ff728c;border-radius:5px}
+.gridlock-board{display:grid;grid-template-columns:repeat(6,42px);grid-template-rows:repeat(6,42px);gap:3px;justify-content:center;margin:16px auto;padding:7px;background:#17243d;border:1px solid #344766;border-radius:10px}
+.grid-piece{background:#566889;color:white;border:0;border-radius:6px;font-weight:800;cursor:pointer}
+.grid-piece.target-piece{background:#55dcd5;color:#071521}
+@media(max-width:430px){.gridlock-board{grid-template-columns:repeat(6, min(11vw,42px));grid-template-rows:repeat(6,min(11vw,42px))}}
