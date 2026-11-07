@@ -1,21 +1,27 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="NexPlay: juega gratis a minijuegos originales de arcade, habilidad y puzzles desde tu ordenador o móvil.">
-  <meta name="theme-color" content="#090d1b">
-  <title>NexPlay — Minijuegos gratis</title>
-  <link rel="canonical" href="https://lunaagudoalvarez-blip.github.io/nexplay/">
-  <link rel="stylesheet" href="styles.css?v=20261107-6">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="NexPlay: descubre juegos online gratis de carreras, acción, deportes, puzles y arcade.">
+<meta name="theme-color" content="#080d20"><title>NexPlay — Juegos online gratis</title>
+<link rel="canonical" href="https://lunaagudoalvarez-blip.github.io/nexplay/">
+<link rel="stylesheet" href="styles.css?v=20261107-7">
 </head>
 <body>
-<header class="topbar"><a class="brand" href="#inicio" aria-label="NexPlay inicio"><span class="brand-mark">N</span> NEX<span>PLAY</span></a><nav><a href="#juegos">Juegos</a><a href="#categorias">Categorías</a></nav><a class="header-cta" href="#juegos">Jugar ahora <b>↗</b></a></header>
+<header class="topbar"><a class="brand" href="#inicio"><span class="brand-icon">✦</span><span>Nex<span>Play</span></span></a>
+<nav><a class="nav-active" href="#inicio">Inicio</a><a href="#categorias">Categorías</a><a href="#juegos">Top juegos</a><a href="#juegos">Favoritos</a></nav>
+<label class="search top-search"><span>⌕</span><input id="search" type="search" placeholder="Buscar juegos..." aria-label="Buscar juegos"></label><button class="moon" aria-label="Cambiar tema">◐</button>
+</header>
 <main id="inicio">
-<section class="hero"><div class="hero-copy"><div class="eyebrow"><i></i> ARCADE · CARRERAS · DESAFÍOS</div><h1>El siguiente nivel<br><span>es tuyo.</span></h1><p>Compite contra el reloj, supera desafíos y consigue tu mejor puntuación. Tu próxima partida empieza aquí.</p><a class="primary" href="#juegos">Explorar juegos <span>→</span></a><div class="hero-note">JUEGA GRATIS  ·  SIN DESCARGAS  ·  EN TODOS TUS DISPOSITIVOS</div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="game-tile tile-one"><strong>01</strong><small>ARCADE</small></div><div class="game-tile tile-two"><strong>02</strong><small>PUZZLE</small></div><div class="game-tile tile-three"><strong>03</strong><small>RACING</small></div><div class="hero-core">N<span>P</span></div></div></section>
-<section class="section" id="categorias"><div class="section-head"><div><div class="eyebrow">ENCUENTRA TU RETO</div><h2>Elige tu estilo de juego</h2></div></div><div class="categories"><button class="category active" data-filter="Todos"><span>Todos</span></button><button class="category" data-filter="Carreras"><span>Carreras</span></button><button class="category" data-filter="Arcade"><span>Arcade</span></button><button class="category" data-filter="Habilidad"><span>Habilidad</span></button><button class="category" data-filter="Puzzle"><span>Puzzles</span></button></div></section>
-<section class="section games-section" id="juegos"><div class="section-head"><div><div class="eyebrow">SELECCIÓN NEXPLAY</div><h2>Juegos destacados</h2><span id="game-count" aria-live="polite">12 juegos</span></div><label class="search">⌕ <input id="search" type="search" placeholder="Buscar un juego…" aria-label="Buscar juegos"></label></div><div class="games-grid" id="games-grid"></div><p class="notice" id="empty" hidden>No encontramos juegos con esa búsqueda.</p></section>
-<section class="join"><div><div class="eyebrow">SIEMPRE HAY OTRO RETO</div><h2>Tu próxima partida<br>empieza aquí.</h2></div><a class="primary" href="#juegos">Ver juegos <span>→</span></a></section>
-</main><footer><a class="brand" href="#inicio"><span class="brand-mark">N</span> NEX<span>PLAY</span></a><p>Minijuegos originales para jugar en cualquier lugar.</p><small>© <span id="year"></span> NexPlay. Proyecto independiente.</small></footer>
-<div class="modal" id="modal" aria-hidden="true"><div class="modal-panel"><div class="modal-head"><div><div class="eyebrow" id="game-category">MINIJUEGO</div><h2 id="game-title">Juego</h2></div><button class="close" id="close" aria-label="Cerrar juego">×</button></div><div id="game-area" class="game-area"></div></div></div>
-<script src="games.js?v=20261107-6"></script>
+<section class="hero"><div class="hero-copy"><div class="hero-kicker">TU PORTAL DE JUEGOS ONLINE</div><h1>¡Bienvenido a<br><span>NexPlay!</span></h1><p>Juega, compite y descubre nuevos desafíos. Tu próxima partida empieza aquí.</p><a class="hero-button" href="#juegos">▶ &nbsp; Empezar a jugar</a><div class="hero-meta">JUEGA GRATIS <i></i> SIN DESCARGAS <i></i> SIEMPRE DISPONIBLE</div></div>
+<div class="hero-scene" aria-label="Ilustración de carreras futuristas"><div class="sun-glow"></div><div class="speed-ring"></div><div class="track"></div><div class="hero-car"><b></b><i></i></div><div class="hero-orb orb-a"></div><div class="hero-orb orb-b"></div><div class="hero-cube"></div><div class="hero-caption">PLAY<br><strong>BEYOND</strong></div></div></section>
+<section class="categories-section" id="categorias"><div class="categories" id="category-list">
+<button class="category active" data-filter="Todos">▦ <span>Todos</span></button><button class="category" data-filter="Carreras">⌁ <span>Carreras</span></button><button class="category" data-filter="Acción">✣ <span>Acción</span></button><button class="category" data-filter="Aventuras">◆ <span>Aventuras</span></button><button class="category" data-filter="Puzles">▧ <span>Puzles</span></button><button class="category" data-filter="Habilidad">ϟ <span>Habilidad</span></button><button class="category" data-filter="Deportes">◉ <span>Deportes</span></button><button class="category" data-filter="Arcade">▣ <span>Arcade</span></button><button class="category" data-filter="Estrategia">♜ <span>Estrategia</span></button><button class="category" data-filter="Multijugador">♧ <span>Multijugador</span></button>
+</div></section>
+<section class="games-section" id="juegos"><div class="section-heading"><div><div class="section-kicker">DESCUBRE TU PRÓXIMO RETO</div><h2>Juegos populares</h2><span id="game-count">12 juegos</span></div><a class="see-all" href="#juegos">Ver todos →</a></div><div class="games-grid" id="games-grid"></div><p class="empty" id="empty" hidden>No hay juegos que coincidan con tu búsqueda.</p></section>
+<section class="bottom-banner"><div><span>¿LISTO PARA EL SIGUIENTE NIVEL?</span><h2>Encuentra tu próximo juego favorito.</h2></div><a class="hero-button" href="#juegos">Explorar juegos →</a></section>
+</main>
+<footer><a class="brand" href="#inicio"><span class="brand-icon">✦</span><span>Nex<span>Play</span></span></a><p>Tu portal de juegos online.</p><small>© <span id="year"></span> NexPlay</small></footer>
+<div class="modal" id="modal" aria-hidden="true"><div class="modal-panel"><div class="modal-head"><div><span class="section-kicker" id="game-category">NEXPLAY ORIGINAL</span><h2 id="game-title">Juego</h2></div><button class="close" id="close" aria-label="Cerrar">×</button></div><div id="game-area" class="game-area"></div></div></div>
+<script src="games.js?v=20261107-7"></script>
 </body></html>
