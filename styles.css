@@ -30,3 +30,53 @@ button,input{font:inherit}
 .grid-piece{background:#566889;color:white;border:0;border-radius:6px;font-weight:800;cursor:pointer}
 .grid-piece.target-piece{background:#55dcd5;color:#071521}
 @media(max-width:430px){.gridlock-board{grid-template-columns:repeat(6, min(11vw,42px));grid-template-rows:repeat(6,min(11vw,42px))}}
+
+/* NexPlay visual upgrade: illustrated covers and subtle motion */
+:root{scroll-behavior:smooth}
+.hero{position:relative;isolation:isolate}
+.hero:before{content:"";position:absolute;z-index:-1;inset:0 4%;background:radial-gradient(ellipse at 75% 45%,#263a7040,transparent 58%)}
+.hero-copy h1{letter-spacing:-1.8px;text-shadow:0 8px 35px #0007}
+.hero-art{perspective:900px}
+.game-tile{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.tile-one{animation:tileFloat 5s ease-in-out infinite}
+.tile-two{animation:tileFloat 6s ease-in-out -1.5s infinite}
+.tile-three{animation:tileFloat 5.5s ease-in-out -3s infinite}
+.game-tile strong{font:800 25px 'Space Grotesk';letter-spacing:-1px}
+.game-tile small{font-weight:800}
+@keyframes tileFloat{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -12px;rotate:4deg}}
+.games-grid{perspective:1000px}
+.game-card{position:relative;overflow:hidden;transform:translateY(0) scale(1);transition:transform .28s cubic-bezier(.2,.8,.2,1),border-color .28s,box-shadow .28s;will-change:transform}
+.game-card:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(125deg,#ffffff0b,transparent 38%,#ffffff05)}
+.game-card:hover{transform:translateY(-8px) scale(1.018);border-color:#5be5df;box-shadow:0 22px 48px #0008,0 0 0 1px #5be5df22}
+.game-art-new{height:154px;position:relative;isolation:isolate;border:1px solid #ffffff12;box-shadow:inset 0 0 35px #0004;transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s}
+.game-card:hover .game-art-new{transform:scale(1.025);filter:saturate(1.22)}
+.game-art-new span{position:relative;z-index:3;font-size:clamp(34px,4vw,52px);font-weight:900;letter-spacing:-2px;color:#fff;text-shadow:0 4px 22px #0009}
+.game-art-new small{position:absolute;z-index:3;left:15px;bottom:12px;font-weight:900;letter-spacing:2px;color:#ffffffb8}
+.game-art-new i,.game-art-new b{position:absolute;display:block;pointer-events:none}
+.game-art-neon-circuit{background:radial-gradient(ellipse at 50% 110%,#1e9fbc88,transparent 48%),linear-gradient(135deg,#111a37,#273b6a 55%,#10182a)}
+.game-art-neon-circuit:before{content:"";position:absolute;inset:-35% 35%;transform:rotate(28deg);border-left:4px solid #5ce9e4;border-right:4px solid #5ce9e4;box-shadow:0 0 18px #55e5df;opacity:.75}
+.game-art-neon-circuit i{width:72px;height:112px;left:calc(50% - 36px);top:20px;border-radius:18px 18px 10px 10px;background:linear-gradient(90deg,#8b83ff,#4b54a8);border:2px solid #e4e7ff;transform:perspective(100px) rotateX(8deg);box-shadow:0 0 25px #8c82ff99}
+.game-art-neon-circuit b{width:12px;height:12px;border-radius:50%;background:#fff;top:25px;left:calc(50% - 6px);box-shadow:0 0 20px #fff}
+.game-art-gravity-shift{background:radial-gradient(circle at 50% 50%,#403b82,#111a35 70%)}
+.game-art-gravity-shift i{width:94px;height:94px;border:3px solid #64e8e0;border-radius:25px;left:calc(50% - 47px);top:25px;transform:rotate(45deg);box-shadow:0 0 30px #58e5dd66}
+.game-art-gravity-shift b{width:28px;height:28px;background:#a08cff;border-radius:6px;left:calc(50% - 14px);top:58px;box-shadow:0 0 25px #a08cff}
+.game-art-stackline{background:linear-gradient(145deg,#142a46,#46346f)}
+.game-art-stackline i{width:130px;height:17px;left:calc(50% - 65px);bottom:35px;background:#55e5dc;border-radius:4px;box-shadow:0 -25px 0 #8d7cff,0 -50px 0 #e1e5ff;transform:skewY(-8deg)}
+.game-art-stackline b{width:10px;height:10px;right:22%;top:25px;background:#ffce72;border-radius:50%;box-shadow:0 0 25px #ffce72}
+.game-art-gridlock{background:radial-gradient(circle at 50%,#3d4d75,#121a2d 75%)}
+.game-art-gridlock i{width:96px;height:96px;left:calc(50% - 48px);top:18px;border:5px solid #9aa9c9;border-radius:8px;background:repeating-linear-gradient(90deg,transparent 0 28px,#8fa0c633 29px 31px),repeating-linear-gradient(0deg,transparent 0 28px,#8fa0c633 29px 31px)}
+.game-art-gridlock b{width:25px;height:53px;left:calc(50% - 12px);top:39px;background:#55e5dc;border-radius:5px;box-shadow:0 0 20px #55e5dc99}
+.game-art-neon-breaker{background:linear-gradient(135deg,#142c45,#392d67)}
+.game-art-neon-breaker i{width:135px;height:12px;left:calc(50% - 67px);bottom:28px;border-radius:10px;background:#58e5dd;box-shadow:0 0 24px #58e5dd}
+.game-art-neon-breaker b{width:12px;height:12px;left:calc(50% - 6px);top:42px;border-radius:50%;background:#fff;box-shadow:0 0 22px white, -42px 20px 0 4px #ff718d,42px 20px 0 4px #a08cff,-42px 48px 0 4px #ffce72,42px 48px 0 4px #55e5dc}
+.game-art-orbit-dash{background:radial-gradient(circle at center,#263c68,#0d1428 72%)}
+.game-art-orbit-dash i{width:110px;height:110px;left:calc(50% - 55px);top:14px;border:2px solid #a18cff;border-radius:50%;box-shadow:0 0 22px #9182ff66}
+.game-art-orbit-dash b{width:16px;height:16px;left:calc(50% + 38px);top:33px;border-radius:50%;background:#55e5dc;box-shadow:0 0 20px #55e5dc, -58px 56px 0 2px #ff728c}
+.game-card:hover .game-art-new i{animation:artPulse 1.8s ease-in-out infinite alternate}
+@keyframes artPulse{from{filter:brightness(.9);transform:scale(.98)}to{filter:brightness(1.35);transform:scale(1.05)}}
+.play{transition:transform .2s,background .2s,box-shadow .2s}
+.play:hover{transform:translateY(-2px);background:linear-gradient(100deg,#55e5dc,#9b87ff);color:#091326;box-shadow:0 8px 22px #55e5dc33}
+.category{transition:transform .2s,border-color .2s,background .2s}
+.category:hover{transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+@media(max-width:760px){.game-art-new{height:132px}}
