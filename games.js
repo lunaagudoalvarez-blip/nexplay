@@ -177,49 +177,55 @@ function play(g){
 document.querySelector('#year').textContent=new Date().getFullYear();render();
 
 
-// Perfil y selector de avatar local.
+// Perfil, colecciones y amigos locales.
 (()=>{
  const drawer=document.querySelector('#profile-drawer'),backdrop=document.querySelector('#profile-backdrop');
  if(!drawer||!backdrop)return;
- const avatar=document.querySelector('#profile-avatar'),trigger=document.querySelector('#profile-trigger'),picker=document.querySelector('#avatar-picker');
+ const $p=s=>drawer.querySelector(s);
+ const avatar=$p('#profile-avatar'),trigger=document.querySelector('#profile-trigger'),picker=$p('#avatar-picker');
  const tabs=[...drawer.querySelectorAll('[data-profile-tab]')],views=[...drawer.querySelectorAll('[data-profile-view]')];
- const showProfileTab=name=>{tabs.forEach(t=>t.classList.toggle('active',t.dataset.profileTab===name));views.forEach(v=>v.classList.toggle('active',v.dataset.profileView===name));};
+ const showProfileTab=name=>{tabs.forEach(t=>t.classList.toggle('active',t.dataset.profileTab===name));views.forEach(v=>v.classList.toggle('active',v.dataset.profileView===name));if(name==='juegos')renderCollection(activeCollection);if(name==='amigos')renderFriends();};
  tabs.forEach(t=>t.addEventListener('click',()=>showProfileTab(t.dataset.profileTab)));
- const inviteInput=drawer.querySelector('#friend-invite-link');
- if(inviteInput)inviteInput.value=location.origin+location.pathname;
- const inviteText=()=> '¡Ven a jugar conmigo a NexPlay! '+location.origin+location.pathname;
- drawer.querySelector('#copy-friend-invite')?.addEventListener('click',()=>{if(navigator.clipboard)navigator.clipboard.writeText(inviteText()).then(()=>alert('Invitación copiada.'));else if(inviteInput){inviteInput.select();document.execCommand('copy');alert('Invitación copiada.');}});
- drawer.querySelector('#share-friend-invite')?.addEventListener('click',()=>{if(navigator.share)navigator.share({title:'Invitación a NexPlay',text:inviteText(),url:location.origin+location.pathname}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(inviteText()).then(()=>alert('Invitación copiada.'));});
- const closePicker=()=>{picker.hidden=true;};
- const openPicker=()=>{picker.hidden=false;};
+ const closePicker=()=>{if(picker)picker.hidden=true;};
+ const openPicker=()=>{if(picker)picker.hidden=false;};
  const open=()=>{drawer.classList.add('open');backdrop.classList.add('open');document.body.classList.add('profile-open');drawer.setAttribute('aria-hidden','false');};
  const close=()=>{drawer.classList.remove('open');backdrop.classList.remove('open');document.body.classList.remove('profile-open');drawer.setAttribute('aria-hidden','true');closePicker();};
- function applyAvatar(value){
-   localStorage.setItem('nexplay-avatar',value);
-   if(value.startsWith('data:image/')){avatar.innerHTML='<img alt="Foto de perfil" src="'+value+'">';trigger.innerHTML='<img alt="" src="'+value+'">';}
-   else{avatar.textContent=value;trigger.textContent=value;}
- }
+ function applyAvatar(value){try{localStorage.setItem('nexplay-avatar',value);}catch(e){} if(value.startsWith('data:image/')){avatar.innerHTML='<img alt="Foto de perfil" src="'+value+'">';trigger.innerHTML='<img alt="" src="'+value+'">';}else{avatar.textContent=value;trigger.textContent=value;}}
  trigger?.addEventListener('click',open);
- document.querySelector('#profile-close')?.addEventListener('click',close);
+ $p('#profile-close')?.addEventListener('click',close);
  backdrop.addEventListener('click',close);
- document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))close();});
  avatar?.addEventListener('click',openPicker);
- document.querySelector('#profile-edit-icon')?.addEventListener('click',openPicker);
- document.querySelector('#avatar-picker-close')?.addEventListener('click',closePicker);
- document.querySelectorAll('[data-avatar]').forEach(b=>b.addEventListener('click',()=>{applyAvatar(b.dataset.avatar);closePicker();}));
- document.querySelector('#avatar-file')?.addEventListener('change',e=>{
-   const file=e.target.files&&e.target.files[0];if(!file)return;
-   if(!/^image\/(png|jpeg|webp|gif)$/.test(file.type)){alert('Elige una imagen PNG, JPG, WEBP o GIF.');e.target.value='';return;}
-   if(file.size>2*1024*1024){alert('La foto debe ocupar menos de 2 MB.');e.target.value='';return;}
-   const reader=new FileReader();reader.onload=()=>{if(typeof reader.result==='string'){applyAvatar(reader.result);closePicker();}};reader.readAsDataURL(file);e.target.value='';
- });
- document.querySelector('#avatar-remove')?.addEventListener('click',()=>{localStorage.removeItem('nexplay-avatar');const initial=(localStorage.getItem('nexplay-display-name')||'Jugador.NexPlay').slice(0,1).toUpperCase();avatar.textContent=initial;trigger.textContent=initial;closePicker();});
- const edit=()=>{const current=localStorage.getItem('nexplay-display-name')||'Jugador.NexPlay';const value=prompt('¿Qué nombre quieres mostrar en tu perfil?',current);if(value&&value.trim()){const name=value.trim().slice(0,28);localStorage.setItem('nexplay-display-name',name);document.querySelector('#profile-name').textContent='@'+name;if(!localStorage.getItem('nexplay-avatar')){avatar.textContent=name.slice(0,1).toUpperCase();trigger.textContent=name.slice(0,1).toUpperCase();}}};
- document.querySelector('#profile-edit')?.addEventListener('click',edit);
- document.querySelector('#profile-complete')?.addEventListener('click',edit);
- const saved=localStorage.getItem('nexplay-display-name');if(saved){document.querySelector('#profile-name').textContent='@'+saved;}
+ $p('#profile-edit-icon')?.addEventListener('click',openPicker);
+ $p('#avatar-picker-close')?.addEventListener('click',closePicker);
+ drawer.querySelectorAll('[data-avatar]').forEach(b=>b.addEventListener('click',()=>{applyAvatar(b.dataset.avatar);closePicker();}));
+ $p('#avatar-file')?.addEventListener('change',e=>{const file=e.target.files&&e.target.files[0];if(!file)return;if(!/^image\/(png|jpeg|webp|gif)$/.test(file.type)){alert('Elige una imagen PNG, JPG, WEBP o GIF.');e.target.value='';return;}if(file.size>2*1024*1024){alert('La foto debe ocupar menos de 2 MB.');e.target.value='';return;}const reader=new FileReader();reader.onload=()=>{if(typeof reader.result==='string'){applyAvatar(reader.result);closePicker();}};reader.readAsDataURL(file);e.target.value='';});
+ $p('#avatar-remove')?.addEventListener('click',()=>{localStorage.removeItem('nexplay-avatar');const initial=(localStorage.getItem('nexplay-display-name')||'Jugador.NexPlay').slice(0,1).toUpperCase();avatar.textContent=initial;trigger.textContent=initial;closePicker();});
+ const edit=()=>{const currentName=localStorage.getItem('nexplay-display-name')||'Jugador.NexPlay';const value=prompt('¿Qué nombre quieres mostrar en tu perfil?',currentName);if(value&&value.trim()){const name=value.trim().slice(0,28);localStorage.setItem('nexplay-display-name',name);$p('#profile-name').textContent='@'+name;if(!localStorage.getItem('nexplay-avatar')){avatar.textContent=name.slice(0,1).toUpperCase();trigger.textContent=name.slice(0,1).toUpperCase();}}};
+ $p('#profile-edit')?.addEventListener('click',edit);$p('#profile-complete')?.addEventListener('click',edit);
+ const saved=localStorage.getItem('nexplay-display-name');if(saved)$p('#profile-name').textContent='@'+saved;
  const savedAvatar=localStorage.getItem('nexplay-avatar');if(savedAvatar)applyAvatar(savedAvatar);else if(saved){avatar.textContent=saved.slice(0,1).toUpperCase();trigger.textContent=saved.slice(0,1).toUpperCase();}
- document.querySelector('#profile-share')?.addEventListener('click',()=>{const url=location.origin+location.pathname;if(navigator.share)navigator.share({title:'Mi perfil de NexPlay',url}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(url).then(()=>alert('Enlace de NexPlay copiado.'));});
- document.querySelector('#profile-signout')?.addEventListener('click',()=>{close();alert('Estás usando NexPlay como invitado. No hay ninguna cuenta conectada.');});
- document.querySelectorAll('[data-profile-action]').forEach(b=>b.addEventListener('click',()=>alert('Esta sección estará disponible cuando activemos las cuentas de NexPlay.')));
+ const copyText=async(text)=>{try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return true;}}catch(e){}try{const temp=document.createElement('textarea');temp.value=text;temp.style.position='fixed';temp.style.opacity='0';document.body.appendChild(temp);temp.select();const ok=document.execCommand('copy');temp.remove();return ok;}catch(e){return false;}};
+ const inviteUrl=()=>location.origin+location.pathname+'?invita=nexplay';
+ const feedback=$p('#friend-feedback');
+ const showFeedback=msg=>{if(feedback)feedback.textContent=msg;};
+ async function shareInvite(){const url=inviteUrl(),text='¡Vamos a jugar a NexPlay! '+url;if(navigator.share){try{await navigator.share({title:'Invitación a NexPlay',text,url});showFeedback('Invitación compartida.');return;}catch(e){if(e.name==='AbortError')return;}}const ok=await copyText(text);showFeedback(ok?'Enlace de invitación copiado.':'No se pudo copiar automáticamente. Copia el enlace: '+url);}
+ $p('#share-friend-invite')?.addEventListener('click',shareInvite);
+ $p('#share-friend-profile')?.addEventListener('click',async()=>{const url=location.origin+location.pathname;const ok=await copyText(url);showFeedback(ok?'Enlace de tu perfil copiado.':'Copia este enlace: '+url);});
+ const FRIENDS_KEY='nexplay-friends-local-v1';
+ const readFriends=()=>{try{return JSON.parse(localStorage.getItem(FRIENDS_KEY)||'[]').filter(x=>typeof x==='string');}catch(e){return[];}};
+ function renderFriends(){const list=$p('#friends-list'),total=$p('#friend-total');if(!list)return;const friends=readFriends();if(total)total.textContent=friends.length;list.innerHTML=friends.length?friends.map((name,i)=>'<div class="friend-row"><span class="friend-avatar">'+safe(name.slice(0,1).toUpperCase())+'</span><strong>'+safe(name)+'</strong><button type="button" data-remove-friend="'+i+'" aria-label="Eliminar '+safe(name)+'">×</button></div>').join(''):'<p class="profile-empty">Todavía no has añadido amigos.</p>';}
+ $p('#friend-add-form')?.addEventListener('submit',e=>{e.preventDefault();const input=$p('#friend-name-input'),name=input.value.trim().replace(/\s+/g,' ').slice(0,24);if(!name)return;const friends=readFriends();if(friends.some(x=>x.toLowerCase()===name.toLowerCase())){showFeedback('Ese apodo ya está en tu lista.');return;}friends.push(name);try{localStorage.setItem(FRIENDS_KEY,JSON.stringify(friends));input.value='';showFeedback('Amigo añadido a tu lista de este dispositivo.');renderFriends();}catch(err){showFeedback('No se pudo guardar. Revisa el almacenamiento del navegador.');}});
+ $p('#friends-list')?.addEventListener('click',e=>{const btn=e.target.closest('[data-remove-friend]');if(!btn)return;const friends=readFriends();friends.splice(Number(btn.dataset.removeFriend),1);localStorage.setItem(FRIENDS_KEY,JSON.stringify(friends));renderFriends();showFeedback('Amigo eliminado de esta lista.');});
+ $p('#profile-signout')?.addEventListener('click',()=>{close();showFeedback('Estás usando NexPlay como invitado.');alert('Estás usando NexPlay como invitado. No hay ninguna cuenta conectada.');});
+ drawer.querySelectorAll('[data-profile-action]')?.forEach(b=>b.addEventListener('click',()=>showFeedback('Esta opción estará disponible al activar las cuentas de NexPlay.')));
+ let activeCollection='liked';
+ const collectionTabs=[...drawer.querySelectorAll('[data-collection]')];
+ collectionTabs.forEach(b=>b.addEventListener('click',()=>{activeCollection=b.dataset.collection;collectionTabs.forEach(x=>x.classList.toggle('active',x===b));renderCollection(activeCollection);}));
+ function renderCollection(which){const box=$p('#profile-game-list');if(!box)return;let items=[];if(which==='recent'){try{items=JSON.parse(localStorage.getItem('nexplay-recent-v1')||'[]').map(id=>games.find(g=>g.id===id)).filter(Boolean);}catch(e){items=[];}}else if(which==='favorites'){items=(state.favorites||[]).map(id=>games.find(g=>g.id===id)).filter(Boolean);}else{items=Object.keys(state.votes||{}).filter(id=>state.votes[id]==='like').map(id=>games.find(g=>g.id===id)).filter(Boolean);}
+ if(!items.length){box.innerHTML='<p class="profile-empty">'+(which==='liked'?'Todavía no has marcado ningún juego con Me gusta.':which==='favorites'?'Aún no tienes juegos favoritos.':'Todavía no has jugado a ningún juego.')+'</p>';return;}
+ box.innerHTML=items.map(g=>'<button type="button" class="profile-game-card" data-profile-game="'+g.id+'"><span class="profile-game-cover" style="background-image:url(&quot;'+cover(g,games.indexOf(g))+'&quot;)"></span><strong>'+safe(g.name)+'</strong><small>'+safe(g.category)+'</small></button>').join('');}
+ $p('#profile-game-list')?.addEventListener('click',e=>{const btn=e.target.closest('[data-profile-game]');if(!btn)return;const game=games.find(g=>g.id===btn.dataset.profileGame);if(game){close();openGame(game);}});
+ $p('#profile-share')?.addEventListener('click',async()=>{const ok=await copyText(location.origin+location.pathname);showFeedback(ok?'Enlace de NexPlay copiado.':'No se pudo copiar el enlace.');});
+ renderFriends();
 })();
