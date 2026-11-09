@@ -5,14 +5,18 @@
 <meta name="description" content="NexPlay: descubre juegos online gratis de carreras, acción, deportes, puzles y arcade.">
 <meta name="theme-color" content="#080d20"><title>NexPlay — Juegos online gratis</title>
 <link rel="canonical" href="https://lunaagudoalvarez-blip.github.io/nexplay/">
-<link rel="stylesheet" href="styles.css?v=20261109-15">
+<link rel="stylesheet" href="styles.css?v=20261109-16">
 </head>
 <body>
 <header class="topbar">
 <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menú">☰</button>
 <a class="brand" href="#inicio"><span class="brand-icon">N</span><span>NEX<span>PLAY</span></span></a>
 <label class="search top-search"><input id="search" type="search" placeholder="Buscar juegos y categorías" aria-label="Buscar juegos y categorías"><span>⌕</span></label>
-<div class="top-actions"><button class="top-icon" id="friends-shortcut" type="button" aria-label="Amigos">♟</button><button class="top-icon" id="saved-shortcut" type="button" aria-label="Mis juegos">▮</button><button class="top-icon" id="notifications-shortcut" type="button" aria-label="Notificaciones">♟</button><button class="profile-trigger" id="profile-trigger" type="button" aria-label="Abrir perfil">N</button></div>
+<div class="top-actions" aria-label="Accesos rápidos">
+<button class="top-icon" id="friends-shortcut" type="button" aria-label="Amigos" title="Amigos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM17 4.5a3.5 3.5 0 0 1 0 6.8M17 15h.5a3.5 3.5 0 0 1 3.5 3.5V20"/></svg></button>
+<button class="top-icon" id="saved-shortcut" type="button" aria-label="Mis juegos guardados" title="Mis juegos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.75A1.75 1.75 0 0 1 7.75 3h8.5A1.75 1.75 0 0 1 18 4.75V21l-6-3.7L6 21V4.75Z"/></svg></button>
+<button class="top-icon" id="notifications-shortcut" type="button" aria-label="Notificaciones" title="Notificaciones"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></svg><span class="notification-dot" aria-hidden="true"></span></button>
+<button class="profile-trigger" id="profile-trigger" type="button" aria-label="Abrir perfil" title="Mi perfil">N</button></div>
 <span id="account-status" class="account-status">Invitado</span>
 </header>
 <aside class="arcade-sidebar" aria-label="Menú principal">
@@ -108,5 +112,5 @@
   </div>
   <aside class="game-rail"><div class="rail-heading">Jugar a continuación</div><p class="rail-subtitle">Más juegos que podrían gustarte</p><div id="game-recommendations" class="recommendations"></div></aside>
 </div></div></div>
-<script src="games.js?v=20261109-15"></script>
+<script src="games.js?v=20261109-16"></script>
 </body></html>
