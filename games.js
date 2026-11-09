@@ -12,11 +12,11 @@ const games = [
 {id:'penalty-shooters',name:'Penalty Shooters',category:'Deportes',desc:'Elige el lado y supera al portero.',art:'PENALTY',mode:'penalty'},
 {id:'goalkeeper-pro',name:'Goalkeeper Pro',category:'Deportes',desc:'Lee el disparo y detén los penaltis.',art:'GOALKEEPER',mode:'penalty'},
 {id:'8-ball-pool',name:'8 Ball Pool',category:'Deportes',desc:'Calcula el tiro y consigue puntos.',art:'8 BALL POOL',mode:'pool'},
-{id:'nex-platform-100',name:'Nex Platform: 100 niveles',category:'Aventuras',desc:'Una aventura de plataformas 2D original con 100 niveles, monedas y obstáculos.',art:'NEX 100',mode:'platformer'},
+{id:'nex-platform-100',name:'Nex Platform: 100 niveles',category:'Aventuras',desc:'Una aventura de plataformas 2D original con 100 niveles diferentes, monedas y obstáculos.',art:'NEX 100',mode:'platformer'},
 {id:'three-stones',name:'Tres Fichas',category:'Multijugador',desc:'Coloca tres fichas y después muévelas por el tablero para formar una línea.',art:'3 STONES',mode:'morris'},
 {id:'jump-adventure',name:'Jump Adventure',category:'Aventuras',desc:'Salta entre plataformas y alcanza la meta.',art:'JUMP QUEST',mode:'jump'},
 {id:'maze-runner',name:'Maze Runner',category:'Aventuras',desc:'Encuentra la salida del laberinto.',art:'MAZE RUNNER',mode:'maze'},
-{id:'temple-escape',name:'Temple Escape',category:'Aventuras',desc:'Escoge el camino correcto para escapar.',art:'TEMPLE',mode:'maze'},
+
 {id:'bubble-shooter',name:'Bubble Shooter',category:'Arcade',desc:'Apunta a los objetivos y suma puntos.',art:'BUBBLE',mode:'targets'},
 {id:'neon-breaker',name:'Neon Breaker',category:'Arcade',desc:'Rompe todos los bloques con tus lanzamientos.',art:'BREAKER',mode:'breaker'},
 {id:'snake-arena',name:'Snake Arena',category:'Arcade',desc:'Guía la serpiente y recoge energía.',art:'SNAKE ARENA',mode:'snake'},
@@ -24,7 +24,7 @@ const games = [
 {id:'parking-master',name:'Parking Master',category:'Habilidad',desc:'Aparca con precisión en el menor número de maniobras.',art:'PARKING',mode:'parking'},
 {id:'color-reflex',name:'Color Reflex',category:'Habilidad',desc:'Reacciona cuando aparezca el color indicado.',art:'REFLEX',mode:'reaction'},
 {id:'math-rush',name:'Math Rush',category:'Habilidad',desc:'Resuelve operaciones contra el cronómetro.',art:'MATH RUSH',mode:'math'},
-{id:'word-scramble',name:'Word Scramble',category:'Habilidad',desc:'Ordena las letras y descubre la palabra.',art:'WORD GAME',mode:'word'}
+
 ];
 const grid=document.querySelector('#games-grid'),search=document.querySelector('#search'),empty=document.querySelector('#empty'),modal=document.querySelector('#modal'),area=document.querySelector('#game-area');
 const STORE='nexplay-player-v2';
