@@ -5,13 +5,21 @@
 <meta name="description" content="NexPlay: descubre juegos online gratis de carreras, acción, deportes, puzles y arcade.">
 <meta name="theme-color" content="#080d20"><title>NexPlay — Juegos online gratis</title>
 <link rel="canonical" href="https://lunaagudoalvarez-blip.github.io/nexplay/">
-<link rel="stylesheet" href="styles.css?v=20261107-10">
+<link rel="stylesheet" href="styles.css?v=20261109-11">
 </head>
 <body>
 <header class="topbar"><a class="brand" href="#inicio"><span class="brand-icon">✦</span><span>Nex<span>Play</span></span></a>
 <nav><a class="nav-active" href="#inicio">Inicio</a><a href="#categorias">Categorías</a><a href="#juegos">Top juegos</a><a href="#juegos" id="favorites-link">Favoritos</a></nav>
 <button class="google-login" id="google-login" type="button">Entrar con Google</button><span id="account-status" class="account-status">Invitado</span><label class="search top-search"><span>⌕</span><input id="search" type="search" placeholder="Buscar juegos..." aria-label="Buscar juegos"></label><button class="moon" aria-label="Cambiar tema">◐</button>
 </header>
+<aside class="arcade-sidebar" aria-label="Menú principal">
+<a href="#inicio" class="side-link active" title="Inicio">⌂</a>
+<a href="#juegos" class="side-link" title="Juegos">▣</a>
+<a href="#categorias" class="side-link" title="Categorías">✦</a>
+<a href="#juegos" class="side-link" id="favorites-side" title="Favoritos">♡</a>
+<a href="#juegos" class="side-link" title="Explorar">⌕</a>
+<div class="side-spacer"></div><span class="side-brand">N</span>
+</aside>
 <main id="inicio">
 <section class="hero"><div class="hero-copy"><div class="hero-kicker">TU PORTAL DE JUEGOS ONLINE</div><h1>¡Bienvenido a<br><span>NexPlay!</span></h1><p>Juega, compite y descubre nuevos desafíos. Tu próxima partida empieza aquí.</p><a class="hero-button" href="#juegos">▶ &nbsp; Empezar a jugar</a><div class="hero-meta">JUEGA GRATIS <i></i> SIN DESCARGAS <i></i> SIEMPRE DISPONIBLE</div></div>
 <div class="hero-scene" aria-label="Ilustración de carreras futuristas"><div class="sun-glow"></div><div class="speed-ring"></div><div class="track"></div><div class="hero-car"><b></b><i></i></div><div class="hero-orb orb-a"></div><div class="hero-orb orb-b"></div><div class="hero-cube"></div><div class="hero-caption">PLAY<br><strong>BEYOND</strong></div></div></section>
@@ -22,16 +30,18 @@
 <section class="bottom-banner"><div><span>¿LISTO PARA EL SIGUIENTE NIVEL?</span><h2>Encuentra tu próximo juego favorito.</h2></div><a class="hero-button" href="#juegos">Explorar juegos →</a></section>
 </main>
 <footer><a class="brand" href="#inicio"><span class="brand-icon">✦</span><span>Nex<span>Play</span></span></a><p>Tu portal de juegos online.</p><small>© <span id="year"></span> NexPlay</small></footer>
-<div class="modal" id="modal" aria-hidden="true"><div class="modal-panel"><div class="modal-head"><div class="modal-title"><span class="section-kicker" id="game-category">NEXPLAY ORIGINAL</span><h2 id="game-title">Juego</h2></div><div class="player-tools"><button id="like-game" class="vote-btn" type="button" aria-label="Me gusta">👍 <span>Me gusta</span> <b id="like-count">0</b></button><button id="dislike-game" class="vote-btn" type="button" aria-label="No me gusta">👎 <span>No me gusta</span> <b id="dislike-count">0</b></button><button id="favorite-game" class="favorite-btn" type="button" aria-label="Guardar en favoritos">♡ <span>Favorito</span></button><button id="fullscreen-game" class="fullscreen-btn" type="button">⛶ <span>Pantalla completa</span></button><button class="close" id="close" aria-label="Cerrar">×</button></div></div><div id="game-area" class="game-area"></div>
-<section class="game-details" id="game-details">
-  <div class="details-grid">
-    <section class="detail-panel"><div class="detail-kicker">GUÍA DEL JUEGO</div><h3>Cómo se juega</h3><p id="how-to-play">Abre un juego para ver sus instrucciones.</p><div id="game-controls-note" class="controls-note"></div></section>
-    <section class="detail-panel"><div class="detail-kicker">SIGUE JUGANDO</div><h3>Juegos recomendados</h3><div id="game-recommendations" class="recommendations"></div></section>
+<div class="modal" id="modal" aria-hidden="true"><div class="modal-panel"><div class="modal-head"><div class="modal-title"><span class="section-kicker" id="game-category">NEXPLAY ORIGINAL</span><h2 id="game-title">Juego</h2></div><div class="player-tools"><button id="like-game" class="vote-btn" type="button" aria-label="Me gusta">👍 <span>Me gusta</span> <b id="like-count">0</b></button><button id="dislike-game" class="vote-btn" type="button" aria-label="No me gusta">👎 <span>No me gusta</span> <b id="dislike-count">0</b></button><button id="favorite-game" class="favorite-btn" type="button" aria-label="Guardar en favoritos">♡ <span>Favorito</span></button><button id="fullscreen-game" class="fullscreen-btn" type="button">⛶ <span>Pantalla completa</span></button><button class="close" id="close" aria-label="Cerrar">×</button></div></div><div class="game-room">
+  <div class="game-primary">
+    <div id="game-area" class="game-area"></div>
+    <section class="game-details" id="game-details">
+      <section class="detail-panel guide-panel"><div class="detail-kicker">GUÍA DEL JUEGO</div><h3>Cómo se juega</h3><p id="how-to-play">Abre un juego para ver sus instrucciones.</p><div id="game-controls-note" class="controls-note"></div></section>
+      <section class="detail-panel comments-panel"><div class="detail-kicker">COMUNIDAD NEXPLAY</div><h3>Comentarios</h3><p class="comments-hint">Comparte qué te ha parecido este juego. Los comentarios se guardan en este navegador.</p>
+        <form id="comment-form" class="comment-form"><input id="comment-name" maxlength="24" placeholder="Tu nombre (opcional)" aria-label="Tu nombre"><textarea id="comment-text" maxlength="500" required placeholder="Escribe tu comentario..." aria-label="Escribe tu comentario"></textarea><button class="game-action" type="submit">Publicar comentario</button></form>
+        <div id="comment-list" class="comment-list"><p class="no-comments">Todavía no hay comentarios. ¡Sé el primero!</p></div>
+      </section>
+    </section>
   </div>
-  <section class="detail-panel comments-panel"><div class="detail-kicker">COMUNIDAD NEXPLAY</div><h3>Comentarios</h3><p class="comments-hint">Comparte qué te ha parecido este juego. Los comentarios se guardan en este navegador.</p>
-    <form id="comment-form" class="comment-form"><input id="comment-name" maxlength="24" placeholder="Tu nombre (opcional)" aria-label="Tu nombre"><textarea id="comment-text" maxlength="500" required placeholder="Escribe tu comentario..." aria-label="Escribe tu comentario"></textarea><button class="game-action" type="submit">Publicar comentario</button></form>
-    <div id="comment-list" class="comment-list"><p class="no-comments">Todavía no hay comentarios. ¡Sé el primero!</p></div>
-  </section>
-</section></div></div>
+  <aside class="game-rail"><div class="rail-heading">Jugar a continuación</div><p class="rail-subtitle">Más juegos que podrían gustarte</p><div id="game-recommendations" class="recommendations"></div></aside>
+</div>
 <script src="games.js?v=20261107-10"></script>
 </body></html>
