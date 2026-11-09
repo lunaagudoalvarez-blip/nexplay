@@ -244,3 +244,31 @@ footer{background:#11131b}
 #platform-canvas{display:block;width:100%;max-width:800px;margin:10px auto;border:1px solid #41577d;border-radius:12px;background:#10264b;image-rendering:pixelated;touch-action:none}
 .platform-hud{max-width:800px}.platform-hud strong{color:#52e2ef}.platform-controls{display:flex;justify-content:center;flex-wrap:wrap;gap:5px}
 @media(max-width:500px){.morris-board{grid-template-columns:repeat(3,minmax(65px,1fr));max-width:260px}.morris-cell{font-size:34px}.snake-board{gap:1px;padding:4px}}
+
+
+/* Panel lateral de perfil inspirado en la referencia */
+.profile-trigger{width:38px;height:38px;flex:0 0 38px;border-radius:50%;border:2px solid #d8d6ff;background:linear-gradient(140deg,#6740ff,#9d7bff);color:white;font:900 17px 'Space Grotesk';cursor:pointer}
+.profile-backdrop{position:fixed;inset:0;z-index:60;background:#05071199;opacity:0;visibility:hidden;transition:.2s}
+.profile-drawer{position:fixed;z-index:61;right:0;top:0;bottom:0;width:min(390px,100vw);overflow-y:auto;background:#1b1c27;color:#f5f5fb;box-shadow:-18px 0 55px #0008;transform:translateX(105%);transition:transform .25s ease;padding:24px 0 18px}
+.profile-drawer.open{transform:translateX(0)}
+.profile-backdrop.open{opacity:1;visibility:visible}
+.profile-close{position:absolute;right:18px;top:8px;border:0;background:transparent;color:#f4f3ff;font-size:32px;line-height:1;cursor:pointer}
+.profile-avatar{width:62px;height:62px;margin:0 auto 12px;border:3px solid #eeeaff;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#6740ff,#202f67);font:900 28px 'Space Grotesk';box-shadow:0 0 0 4px #8c6aff22}
+.profile-drawer h2{text-align:center;font:800 19px 'Space Grotesk';margin:0 18px 3px;overflow-wrap:anywhere}
+.profile-email{text-align:center!important;color:#c4c4d0!important;font-size:13px!important;margin:0 12px 22px!important}
+.profile-actions{display:flex;gap:8px;padding:0 14px 30px}
+.profile-actions button{height:41px;border:0;border-radius:24px;color:white;font-weight:800;cursor:pointer}
+.profile-main-action{flex:1;background:#6940ff;font-size:15px}
+.profile-icon-action{width:41px;background:#3c3e55;font-size:20px}
+.profile-progress{background:#302064;padding:18px 7px 20px;margin-bottom:16px}
+.progress-copy{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px}
+.progress-copy button{border:0;background:transparent;color:#b9a2ff;font-size:11px;font-weight:800;cursor:pointer}
+.progress-track{height:8px;background:#0d0d1b;border-radius:8px;margin-top:10px;overflow:hidden}
+.progress-track span{display:block;width:60%;height:100%;border-radius:8px;background:#754aff}
+.profile-menu{padding:0 15px 15px;border-bottom:1px solid #393b4b;display:grid;gap:0}
+.profile-menu button,.profile-support button{padding:11px 0;border:0;background:transparent;color:#e3e3ec;text-align:left;font-size:14px;font-weight:700;cursor:pointer}
+.profile-menu button:hover,.profile-support button:hover{color:#a990ff}
+.profile-support{padding:10px 15px}
+.profile-footnote{padding:0 15px;color:#85879b!important;font-size:10px!important;line-height:1.5!important}
+body.profile-open{overflow:hidden}
+@media(max-width:650px){.profile-drawer{width:min(390px,100vw)}.profile-trigger{width:34px;height:34px;flex-basis:34px}}
