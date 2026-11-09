@@ -163,3 +163,72 @@ body{background:radial-gradient(ellipse at 50% -18%,#1c2450 0,transparent 45%),#
 .comment-item time{display:block;margin-top:6px;color:#7889ad;font-size:10px}
 .no-comments{padding:12px;border:1px dashed #344568;border-radius:10px}
 @media(max-width:700px){.details-grid{grid-template-columns:1fr}.recommendations{grid-template-columns:1fr 1fr}.modal-panel{padding:14px}.modal-head{align-items:flex-start;gap:10px;flex-direction:column}.player-tools{display:flex;flex-wrap:wrap}}
+
+
+/* NexPlay 2D arcade portal layout */
+:root{--bg:#0b0c12;--panel:#171923;--line:#2a2d39;--purple:#7658f5;--cyan:#5ad9ef}
+body{background:#0b0c12;color:#f5f5f7}
+.topbar{height:66px;padding:0 22px 0 82px;background:#17181f;border-bottom:1px solid #292a33;gap:20px}
+.topbar nav{display:none}
+.brand{font-size:24px}
+.brand-icon{width:36px;height:36px;border-radius:10px}
+.top-search{position:absolute;left:50%;transform:translateX(-50%);width:min(440px,38vw);background:#30313d;border:0}
+.top-search input{width:100%}
+.google-login{margin-left:auto}
+.arcade-sidebar{position:fixed;z-index:12;left:0;top:66px;bottom:0;width:62px;background:#17181f;border-right:1px solid #292a33;display:flex;flex-direction:column;align-items:center;gap:12px;padding:15px 0}
+.side-link{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;color:#8584bb;font-size:24px;transition:.18s}
+.side-link:hover,.side-link.active{background:#343047;color:#fff}
+.side-spacer{flex:1}
+.side-brand{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#8d4dff,#35cfe8);font:900 22px 'Space Grotesk'}
+main#inicio{margin-left:62px}
+.hero{min-height:220px;grid-template-columns:42% 58%;background:#11131c}
+.hero-copy{padding:28px 0 24px 5%}
+.hero h1{font-size:48px}
+.hero-scene{min-height:220px}
+.categories-section{background:#11131b;padding:12px 2%;border-bottom:1px solid #262a36}
+.category{background:#20222d;border-color:#343746;padding:9px 14px}
+.games-section{padding:26px 2% 48px}
+.games-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}
+.game-card{background:#191b25;border-color:#2c3040;border-radius:12px}
+.game-art{height:145px;image-rendering:pixelated}
+.game-info{padding:10px}
+.bottom-banner{background:#171923;border-color:#303344}
+footer{background:#11131b}
+.modal{padding:0;place-items:stretch;background:#0a0b10}
+.modal-panel{width:100%;height:100%;max-height:none;overflow:auto;border:0;border-radius:0;padding:0;background:#0b0c12;display:flex;flex-direction:column}
+.modal-head{flex:0 0 auto;padding:13px 20px;margin:0;background:#17181f;border-bottom:1px solid #2b2d37;gap:15px}
+.modal-head h2{font-size:21px;margin:3px 0}
+.player-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.player-tools button{border:1px solid #353846;background:#242630;color:#f4f4f7;border-radius:9px;padding:8px 11px;font-size:11px}
+.player-tools button:hover,.player-tools button.active{background:#39304f;border-color:#8a62ff}
+.game-room{display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:0;min-height:0;flex:1}
+.game-primary{min-width:0;padding:18px 20px 35px;overflow:auto}
+.game-area{min-height:520px;height:min(66vh,720px);padding:20px;border:1px solid #363844;border-radius:3px;background:#303136;color:#f1f1f1;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.game-area>p{color:#d2d2d8}
+.game-status{color:#f7cb64;font:800 17px 'Space Grotesk';text-shadow:0 2px #111}
+.challenge-board{background:#393a40;border:1px solid #55565d;border-radius:2px;min-height:250px;max-width:920px;width:100%;margin:12px auto}
+.challenge-grid button{background:#55565e;border:1px solid #777984;border-radius:2px;color:#fff;font:800 16px 'Space Grotesk'}
+.challenge-grid button.selected{background:#5d86d7}
+.challenge-grid button.matched{background:#398b7a}
+.game-action{background:#5b79d7;border:1px solid #8ca5ef;border-radius:3px;color:white;box-shadow:0 3px 0 #354a8e}
+.game-action:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.arena-scene{min-height:310px!important;border:1px solid #5c5d64!important;border-radius:2px!important;background:linear-gradient(#3d4149 0 65%,#292b32 65%)!important;overflow:hidden}
+.arena-ground{background:repeating-linear-gradient(90deg,#55575f 0 38px,#4b4d55 38px 40px)!important;border-top:3px solid #858891}
+.arena-object{border-radius:2px!important;box-shadow:0 4px 0 #191a20!important}
+.arena-object.target{background:linear-gradient(135deg,#f6ca5c,#d57b35)!important;color:#25252a!important}
+.game-details{display:grid;grid-template-columns:1fr;gap:14px;margin-top:15px}
+.details-grid{display:block}
+.detail-panel{background:#171923;border:1px solid #303440;border-radius:4px;padding:18px}
+.detail-panel h3{font-size:18px}
+.detail-panel p{color:#c0c2cb}
+.game-rail{padding:20px 15px;background:#11131b;border-left:1px solid #292c37;overflow:auto}
+.rail-heading{font:800 18px 'Space Grotesk'}
+.rail-subtitle{font-size:11px!important;color:#898d9c!important;margin:5px 0 15px!important}
+.recommendations{grid-template-columns:1fr 1fr;gap:8px}
+.recommendation{display:flex;flex-direction:column;align-items:stretch;gap:7px;padding:7px;background:#1d202b;border:1px solid #333746;border-radius:4px}
+.recommendation-art{height:65px;width:100%;flex-basis:auto;border-radius:3px;font-size:18px}
+.recommendation span:last-child{font-size:11px}
+.comment-form input,.comment-form textarea{background:#10121a;border-color:#353846;border-radius:4px}
+.comment-item{background:#11131b;border-color:#303440;border-radius:4px}
+@media(max-width:900px){.game-room{grid-template-columns:minmax(0,1fr) 220px}.games-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.arcade-sidebar{width:48px}.topbar{padding-left:58px}.top-search{position:static;transform:none;order:5;width:100%;margin:0}.topbar{height:auto;min-height:66px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}.arcade-sidebar{top:82px}main#inicio{margin-left:48px}.game-room{grid-template-columns:1fr}.game-rail{border-left:0;border-top:1px solid #292c37}.recommendations{grid-template-columns:repeat(2,minmax(0,1fr))}.game-primary{padding:10px}.game-area{height:58vh;min-height:400px;padding:10px}.games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.modal-head{padding:10px;align-items:flex-start;flex-direction:column}.player-tools button{padding:7px 8px}}
