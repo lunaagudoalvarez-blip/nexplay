@@ -36,7 +36,24 @@
 <div class="profile-backdrop" id="profile-backdrop"></div>
 <aside class="profile-drawer" id="profile-drawer" aria-hidden="true">
   <button class="profile-close" id="profile-close" aria-label="Cerrar perfil">×</button>
-  <div class="profile-avatar" id="profile-avatar">N</div>
+  <button class="profile-avatar" id="profile-avatar" type="button" aria-label="Cambiar foto de perfil">N</button>
+  <section class="avatar-picker" id="avatar-picker" hidden>
+    <div class="avatar-picker-head"><strong>Elige tu avatar</strong><button type="button" id="avatar-picker-close" aria-label="Cerrar selector">×</button></div>
+    <p>Escoge uno de NexPlay o sube una imagen de tu dispositivo.</p>
+    <div class="avatar-options" id="avatar-options">
+      <button type="button" class="avatar-option avatar-violet" data-avatar="⚡" aria-label="Rayo">⚡</button>
+      <button type="button" class="avatar-option avatar-cyan" data-avatar="🎮" aria-label="Mando">🎮</button>
+      <button type="button" class="avatar-option avatar-pink" data-avatar="👾" aria-label="Alien arcade">👾</button>
+      <button type="button" class="avatar-option avatar-orange" data-avatar="🔥" aria-label="Fuego">🔥</button>
+      <button type="button" class="avatar-option avatar-green" data-avatar="🐉" aria-label="Dragón">🐉</button>
+      <button type="button" class="avatar-option avatar-blue" data-avatar="🚀" aria-label="Cohete">🚀</button>
+      <button type="button" class="avatar-option avatar-red" data-avatar="💀" aria-label="Calavera">💀</button>
+      <button type="button" class="avatar-option avatar-gold" data-avatar="👑" aria-label="Corona">👑</button>
+    </div>
+    <label class="avatar-upload" for="avatar-file"> <span>＋</span> Subir foto del dispositivo</label>
+    <input id="avatar-file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+    <button type="button" class="avatar-remove" id="avatar-remove">Volver a la inicial</button>
+  </section>
   <h2 id="profile-name">@Jugador.NexPlay</h2><p class="profile-email" id="profile-email">Sesión de invitado</p>
   <div class="profile-actions"><button class="profile-main-action" id="profile-edit">♙ &nbsp; Perfil</button><button class="profile-icon-action" id="profile-edit-icon" aria-label="Editar perfil">✎</button><button class="profile-icon-action" id="profile-share" aria-label="Compartir perfil">➦</button></div>
   <div class="profile-progress"><div class="progress-copy"><strong>Tu perfil está 60% completo</strong><button id="profile-complete">Completar ahora ›</button></div><div class="progress-track"><span></span></div></div>
