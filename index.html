@@ -36,6 +36,12 @@
 <div class="profile-backdrop" id="profile-backdrop"></div>
 <aside class="profile-drawer" id="profile-drawer" aria-hidden="true">
   <button class="profile-close" id="profile-close" aria-label="Cerrar perfil">×</button>
+  <nav class="profile-tabs" aria-label="Secciones del perfil">
+    <button class="profile-tab active" type="button" data-profile-tab="perfil">Perfil</button>
+    <button class="profile-tab" type="button" data-profile-tab="logros">Logros</button>
+    <button class="profile-tab" type="button" data-profile-tab="amigos">Amigos</button>
+  </nav>
+  <div class="profile-view active" data-profile-view="perfil">
   <button class="profile-avatar" id="profile-avatar" type="button" aria-label="Cambiar foto de perfil">N</button>
   <section class="avatar-picker" id="avatar-picker" hidden>
     <div class="avatar-picker-head"><strong>Elige tu avatar</strong><button type="button" id="avatar-picker-close" aria-label="Cerrar selector">×</button></div>
@@ -64,7 +70,22 @@
     <button type="button" id="profile-signout">⇥ &nbsp; Cerrar sesión</button>
   </div>
   <div class="profile-support"><button type="button" data-profile-action="support">✉ &nbsp; Soporte</button></div>
-  <p class="profile-footnote">NexPlay · Cuenta de invitado. El acceso real con Google aún está pendiente de configuración.</p>
+  </div>
+  <section class="profile-view" data-profile-view="logros">
+    <div class="profile-page-head"><span class="profile-kicker">TU PROGRESO</span><h2>Mis logros</h2><p>Retos y objetivos que vas consiguiendo en NexPlay.</p></div>
+    <div class="achievement-summary"><strong>0</strong><span>Logros desbloqueados</span><small>¡Empieza a jugar para conseguir el primero!</small></div>
+    <div class="achievement-list">
+      <article class="achievement-card"><span class="achievement-icon">✦</span><div><b>Primera partida</b><p>Juega por primera vez a cualquier juego.</p></div><em>Por conseguir</em></article>
+      <article class="achievement-card"><span class="achievement-icon">⚡</span><div><b>En racha</b><p>Prueba tres juegos diferentes.</p></div><em>Por conseguir</em></article>
+      <article class="achievement-card"><span class="achievement-icon">🏆</span><div><b>Campeón arcade</b><p>Consigue una nueva mejor puntuación.</p></div><em>Por conseguir</em></article>
+    </div>
+  </section>
+  <section class="profile-view" data-profile-view="amigos">
+    <div class="profile-page-head"><span class="profile-kicker">JUEGA EN COMPAÑÍA</span><h2>Amigos</h2><p>Invita a tus amigos a descubrir NexPlay y compartir partidas.</p></div>
+    <div class="friends-invite-card"><div class="friends-art">✦</div><h3>¡Que empiece la partida!</h3><p>Comparte este enlace para que tus amigos entren en NexPlay.</p><div class="invite-link-row"><input id="friend-invite-link" readonly aria-label="Enlace para invitar amigos"><button type="button" id="copy-friend-invite">Copiar</button></div><button type="button" class="friend-share-button" id="share-friend-invite">↗ &nbsp; Compartir invitación</button></div>
+    <div class="friends-empty"><span>♧</span><b>Todavía no tienes amigos añadidos</b><p>Cuando invites a tus amigos, podréis organizar vuestras partidas aquí.</p></div>
+    <p class="friends-note">Las invitaciones comparten el enlace de NexPlay. La lista de amigos y las partidas online se activarán cuando conectemos cuentas y un servidor.</p>
+  </section>
 </aside>
 <footer><a class="brand" href="#inicio"><span class="brand-icon">✦</span><span>Nex<span>Play</span></span></a><p>Tu portal de juegos online.</p><small>© <span id="year"></span> NexPlay</small></footer>
 <div class="modal" id="modal" aria-hidden="true"><div class="modal-panel"><div class="modal-head"><div class="modal-title"><span class="section-kicker" id="game-category">NEXPLAY ORIGINAL</span><h2 id="game-title">Juego</h2></div><div class="player-tools"><button id="like-game" class="vote-btn" type="button" aria-label="Me gusta">👍 <span>Me gusta</span> <b id="like-count">0</b></button><button id="dislike-game" class="vote-btn" type="button" aria-label="No me gusta">👎 <span>No me gusta</span> <b id="dislike-count">0</b></button><button id="favorite-game" class="favorite-btn" type="button" aria-label="Guardar en favoritos">♡ <span>Favorito</span></button><button id="fullscreen-game" class="fullscreen-btn" type="button">⛶ <span>Pantalla completa</span></button><button class="close" id="close" aria-label="Cerrar">×</button></div></div><div class="game-room">
