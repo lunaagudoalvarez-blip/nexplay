@@ -380,3 +380,6 @@ footer{border-color:#282936}
 .friends-empty p,.friends-note{font-size:10px;line-height:1.5;color:#aeb0c1}
 .friends-note{padding:0 18px;text-align:center}
 @media(max-width:420px){.achievement-card em{display:none}.profile-tabs{margin-left:10px;margin-right:10px}}
+
+/* Portadas individuales NexPlay: arte SVG original */
+.game-art{background-size:cover!important;background-position:center!important}.game-art:before,.game-art:after{display:none}.art-label{padding:6px 9px;border-radius:8px;background:#070b19b8;backdrop-filter:blur(5px);font-size:17px}.continue-card,.feature-mini,.feature-main{background-size:cover!important;background-position:center!important}.continue-card:before,.feature-mini:before,.feature-main:before{display:none}.recommendation-art{background-size:cover!important;background-position:center!important}
