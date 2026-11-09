@@ -414,3 +414,18 @@ footer{border-color:#282936}
 .continue-card,.feature-mini,.feature-main{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
 .continue-card:before,.feature-mini:before,.feature-main:before{display:none!important;content:none!important}
 .recommendation-art,.profile-game-cover{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+
+/* Cabecera NexPlay: iconos reconocibles y accesos directos */
+.top-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+.top-icon{position:relative;width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border:1px solid #ffffff0b;border-radius:50%;background:linear-gradient(145deg,#30313e,#252631);color:#e8e9f5;cursor:pointer;transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease}
+.top-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.top-icon:hover{transform:translateY(-2px);background:linear-gradient(145deg,#414258,#303143);border-color:#7664df;box-shadow:0 5px 18px #6c4de333}
+.top-icon:focus-visible,.profile-trigger:focus-visible{outline:2px solid #a995ff;outline-offset:3px}
+.notification-dot{position:absolute;right:8px;top:7px;width:7px;height:7px;border:1.5px solid #292a37;border-radius:50%;background:#777b91}
+.profile-trigger{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;overflow:hidden;border:2px solid #9c88ff;border-radius:50%;background:linear-gradient(145deg,#9c7aff,#4934b3);color:white;font:900 17px 'Space Grotesk',sans-serif;box-shadow:0 0 0 3px #8061ff22,0 5px 15px #6043cb44;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+.profile-trigger:hover{transform:scale(1.06);box-shadow:0 0 0 4px #8061ff38,0 7px 20px #6043cb66}
+.profile-trigger img{width:100%;height:100%;object-fit:cover}
+.nexplay-toast{position:fixed;z-index:100;top:72px;right:18px;padding:12px 17px;border:1px solid #51477b;border-radius:12px;background:#1b1c2b;color:#f6f4ff;font-size:13px;box-shadow:0 12px 32px #0008;opacity:0;transform:translateY(-8px);pointer-events:none;transition:.2s}
+.nexplay-toast.visible{opacity:1;transform:translateY(0)}
+@media(max-width:700px){.top-actions{gap:7px}.top-icon,.profile-trigger{width:38px;height:38px;flex-basis:38px}.top-icon svg{width:17px;height:17px}}
+@media(max-width:420px){.top-actions{gap:5px}.top-icon,.profile-trigger{width:35px;height:35px;flex-basis:35px}.top-icon svg{width:16px;height:16px}}
