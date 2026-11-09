@@ -5,24 +5,28 @@
 <meta name="description" content="NexPlay: descubre juegos online gratis de carreras, acción, deportes, puzles y arcade.">
 <meta name="theme-color" content="#080d20"><title>NexPlay — Juegos online gratis</title>
 <link rel="canonical" href="https://lunaagudoalvarez-blip.github.io/nexplay/">
-<link rel="stylesheet" href="styles.css?v=20261109-12">
+<link rel="stylesheet" href="styles.css?v=20261109-13">
 </head>
 <body>
-<header class="topbar"><a class="brand" href="#inicio"><span class="brand-icon">✦</span><span>Nex<span>Play</span></span></a>
-<nav><a class="nav-active" href="#inicio">Inicio</a><a href="#categorias">Categorías</a><a href="#juegos">Top juegos</a><a href="#juegos" id="favorites-link">Favoritos</a></nav>
-<button class="google-login" id="google-login" type="button">Entrar con Google</button><button class="profile-trigger" id="profile-trigger" type="button" aria-label="Abrir perfil">N</button><span id="account-status" class="account-status">Invitado</span><label class="search top-search"><span>⌕</span><input id="search" type="search" placeholder="Buscar juegos..." aria-label="Buscar juegos"></label><button class="moon" aria-label="Cambiar tema">◐</button>
+<header class="topbar">
+<button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menú">☰</button>
+<a class="brand" href="#inicio"><span class="brand-icon">N</span><span>NEX<span>PLAY</span></span></a>
+<label class="search top-search"><input id="search" type="search" placeholder="Buscar juegos y categorías" aria-label="Buscar juegos y categorías"><span>⌕</span></label>
+<div class="top-actions"><button class="top-icon" id="friends-shortcut" type="button" aria-label="Amigos">♟</button><button class="top-icon" id="saved-shortcut" type="button" aria-label="Mis juegos">▮</button><button class="top-icon" id="notifications-shortcut" type="button" aria-label="Notificaciones">♟</button><button class="profile-trigger" id="profile-trigger" type="button" aria-label="Abrir perfil">N</button></div>
+<span id="account-status" class="account-status">Invitado</span>
 </header>
 <aside class="arcade-sidebar" aria-label="Menú principal">
 <a href="#inicio" class="side-link active" title="Inicio">⌂</a>
-<a href="#juegos" class="side-link" title="Juegos">▣</a>
-<a href="#categorias" class="side-link" title="Categorías">✦</a>
+<a href="#juegos" class="side-link" title="Recientes">◷</a>
+<a href="#categorias" class="side-link" title="Explorar">✦</a>
+<a href="#juegos" class="side-link" title="Tendencias">♨</a>
 <a href="#juegos" class="side-link" id="favorites-side" title="Favoritos">♡</a>
-<a href="#juegos" class="side-link" title="Explorar">⌕</a>
+<a href="#juegos" class="side-link" title="Multijugador">♟</a>
 <div class="side-spacer"></div><span class="side-brand">N</span>
 </aside>
 <main id="inicio">
-<section class="hero"><div class="hero-copy"><div class="hero-kicker">TU PORTAL DE JUEGOS ONLINE</div><h1>¡Bienvenido a<br><span>NexPlay!</span></h1><p>Juega, compite y descubre nuevos desafíos. Tu próxima partida empieza aquí.</p><a class="hero-button" href="#juegos">▶ &nbsp; Empezar a jugar</a><div class="hero-meta">JUEGA GRATIS <i></i> SIN DESCARGAS <i></i> SIEMPRE DISPONIBLE</div></div>
-<div class="hero-scene" aria-label="Ilustración de carreras futuristas"><div class="sun-glow"></div><div class="speed-ring"></div><div class="track"></div><div class="hero-car"><b></b><i></i></div><div class="hero-orb orb-a"></div><div class="hero-orb orb-b"></div><div class="hero-cube"></div><div class="hero-caption">PLAY<br><strong>BEYOND</strong></div></div></section>
+<section class="continue-section"><div class="home-heading"><h2>Seguir jugando <span>›</span></h2></div><div class="continue-row" id="continue-row"></div></section>
+<section class="recommend-home"><div class="home-heading"><h2>Las mejores opciones para ti</h2></div><div class="feature-layout"><button class="feature-main" id="feature-main" data-feature="snake-arena"><span class="feature-tag">RECOMENDADO</span><strong>Snake Arena</strong><small>Vuelve a jugar · Arcade 2D</small></button><div class="feature-mini-grid" id="feature-mini-grid"></div></div></section>
 <section class="categories-section" id="categorias"><div class="categories" id="category-list">
 <button class="category active" data-filter="Todos">▦ <span>Todos</span></button><button class="category" data-filter="Carreras">⌁ <span>Carreras</span></button><button class="category" data-filter="Acción">✣ <span>Acción</span></button><button class="category" data-filter="Aventuras">◆ <span>Aventuras</span></button><button class="category" data-filter="Puzles">▧ <span>Puzles</span></button><button class="category" data-filter="Habilidad">ϟ <span>Habilidad</span></button><button class="category" data-filter="Deportes">◉ <span>Deportes</span></button><button class="category" data-filter="Arcade">▣ <span>Arcade</span></button><button class="category" data-filter="Estrategia">♜ <span>Estrategia</span></button><button class="category" data-filter="Multijugador">♧ <span>Multijugador</span></button>
 </div></section>
@@ -59,5 +63,5 @@
   </div>
   <aside class="game-rail"><div class="rail-heading">Jugar a continuación</div><p class="rail-subtitle">Más juegos que podrían gustarte</p><div id="game-recommendations" class="recommendations"></div></aside>
 </div></div></div>
-<script src="games.js?v=20261109-12"></script>
+<script src="games.js?v=20261109-13"></script>
 </body></html>
