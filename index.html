@@ -38,7 +38,7 @@
   <button class="profile-close" id="profile-close" aria-label="Cerrar perfil">×</button>
   <nav class="profile-tabs" aria-label="Secciones del perfil">
     <button class="profile-tab active" type="button" data-profile-tab="perfil">Perfil</button>
-    <button class="profile-tab" type="button" data-profile-tab="logros">Logros</button>
+    <button class="profile-tab" type="button" data-profile-tab="juegos">Mis juegos</button>
     <button class="profile-tab" type="button" data-profile-tab="amigos">Amigos</button>
   </nav>
   <div class="profile-view active" data-profile-view="perfil">
@@ -71,20 +71,27 @@
   </div>
   <div class="profile-support"><button type="button" data-profile-action="support">✉ &nbsp; Soporte</button></div>
   </div>
-  <section class="profile-view" data-profile-view="logros">
-    <div class="profile-page-head"><span class="profile-kicker">TU PROGRESO</span><h2>Mis logros</h2><p>Retos y objetivos que vas consiguiendo en NexPlay.</p></div>
-    <div class="achievement-summary"><strong>0</strong><span>Logros desbloqueados</span><small>¡Empieza a jugar para conseguir el primero!</small></div>
-    <div class="achievement-list">
-      <article class="achievement-card"><span class="achievement-icon">✦</span><div><b>Primera partida</b><p>Juega por primera vez a cualquier juego.</p></div><em>Por conseguir</em></article>
-      <article class="achievement-card"><span class="achievement-icon">⚡</span><div><b>En racha</b><p>Prueba tres juegos diferentes.</p></div><em>Por conseguir</em></article>
-      <article class="achievement-card"><span class="achievement-icon">🏆</span><div><b>Campeón arcade</b><p>Consigue una nueva mejor puntuación.</p></div><em>Por conseguir</em></article>
-    </div>
+  <section class="profile-view" data-profile-view="juegos">
+    <div class="profile-page-head"><span class="profile-kicker">TU COLECCIÓN</span><h2>Mis juegos</h2><p>Encuentra tus favoritos, tus me gusta y tus últimas partidas.</p></div>
+    <nav class="collection-tabs" aria-label="Colecciones de juegos">
+      <button type="button" class="collection-tab active" data-collection="liked">Me gusta</button>
+      <button type="button" class="collection-tab" data-collection="favorites">Favoritos</button>
+      <button type="button" class="collection-tab" data-collection="recent">Mis juegos</button>
+    </nav>
+    <div id="profile-game-list" class="profile-game-list"><p class="profile-empty">Todavía no has guardado juegos aquí.</p></div>
   </section>
   <section class="profile-view" data-profile-view="amigos">
-    <div class="profile-page-head"><span class="profile-kicker">JUEGA EN COMPAÑÍA</span><h2>Amigos</h2><p>Invita a tus amigos a descubrir NexPlay y compartir partidas.</p></div>
-    <div class="friends-invite-card"><div class="friends-art">✦</div><h3>¡Que empiece la partida!</h3><p>Comparte este enlace para que tus amigos entren en NexPlay.</p><div class="invite-link-row"><input id="friend-invite-link" readonly aria-label="Enlace para invitar amigos"><button type="button" id="copy-friend-invite">Copiar</button></div><button type="button" class="friend-share-button" id="share-friend-invite">↗ &nbsp; Compartir invitación</button></div>
-    <div class="friends-empty"><span>♧</span><b>Todavía no tienes amigos añadidos</b><p>Cuando invites a tus amigos, podréis organizar vuestras partidas aquí.</p></div>
-    <p class="friends-note">Las invitaciones comparten el enlace de NexPlay. La lista de amigos y las partidas online se activarán cuando conectemos cuentas y un servidor.</p>
+    <div class="profile-page-head"><span class="profile-kicker">JUEGA EN COMPAÑÍA</span><h2>Amigos</h2><p>Guarda los nombres de tus amigos en este dispositivo e invítalos a NexPlay.</p></div>
+    <div class="friends-invite-card">
+      <div class="friends-art">✦</div><h3>Encuentra a tus amigos</h3>
+      <p>Añade un apodo para tenerlo a mano o comparte una invitación.</p>
+      <form id="friend-add-form" class="friend-add-form"><input id="friend-name-input" maxlength="24" required placeholder="Escribe su apodo" aria-label="Apodo del amigo"><button type="submit">Añadir</button></form>
+      <button type="button" class="friend-share-button" id="share-friend-invite">＋ &nbsp; Invitar a un amigo</button>
+      <button type="button" class="friend-profile-share" id="share-friend-profile">↗ &nbsp; Compartir perfil</button>
+      <p id="friend-feedback" class="friend-feedback" aria-live="polite"></p>
+    </div>
+    <div class="friends-list-wrap"><div class="friends-list-heading"><strong>Mis amigos</strong><span id="friend-total">0</span></div><div id="friends-list" class="friends-list"><p class="profile-empty">Todavía no has añadido amigos.</p></div></div>
+    <p class="friends-note">Los apodos se guardan solo en este navegador. Las invitaciones abren NexPlay; para tener amigos sincronizados y partidas online entre dispositivos habrá que conectar un servicio de cuentas y un servidor.</p>
   </section>
 </aside>
 <footer><a class="brand" href="#inicio"><span class="brand-icon">✦</span><span>Nex<span>Play</span></span></a><p>Tu portal de juegos online.</p><small>© <span id="year"></span> NexPlay</small></footer>
