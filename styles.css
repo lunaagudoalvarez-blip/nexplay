@@ -232,3 +232,15 @@ footer{background:#11131b}
 .comment-item{background:#11131b;border-color:#303440;border-radius:4px}
 @media(max-width:900px){.game-room{grid-template-columns:minmax(0,1fr) 220px}.games-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:650px){.arcade-sidebar{width:48px}.topbar{padding-left:58px}.top-search{position:static;transform:none;order:5;width:100%;margin:0}.topbar{height:auto;min-height:66px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}.arcade-sidebar{top:82px}main#inicio{margin-left:48px}.game-room{grid-template-columns:1fr}.game-rail{border-left:0;border-top:1px solid #292c37}.recommendations{grid-template-columns:repeat(2,minmax(0,1fr))}.game-primary{padding:10px}.game-area{height:58vh;min-height:400px;padding:10px}.games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.modal-head{padding:10px;align-items:flex-start;flex-direction:column}.player-tools button{padding:7px 8px}}
+
+
+/* New 2D arcade games */
+.snake-board{display:grid;grid-template-columns:repeat(16,1fr);gap:2px;max-width:640px;margin:14px auto;padding:8px;background:#07101f;border:1px solid #304568;border-radius:10px;aspect-ratio:4/3}
+.snake-cell{background:#172642;border-radius:3px;min-width:0}.snake-cell.snake-body{background:#35d7bf;box-shadow:0 0 8px #35d7bf66}.snake-cell.snake-head{background:#c6fff5}.snake-cell.snake-food{background:#ff5b82;border-radius:50%;box-shadow:0 0 12px #ff5b82}
+.morris-score,.platform-hud{display:flex;justify-content:space-between;gap:12px;max-width:520px;margin:10px auto;color:#eaf3ff;font-size:13px}
+.morris-board{display:grid;grid-template-columns:repeat(3,minmax(70px,110px));gap:8px;justify-content:center;margin:18px auto}
+.morris-cell{aspect-ratio:1;border:1px solid #3c5277;border-radius:12px;background:linear-gradient(145deg,#1a2d50,#101a33);color:#fff;font:900 42px 'Space Grotesk';cursor:pointer}
+.morris-cell.chosen{outline:3px solid #ffca58}.morris-cell.piece-X{color:#4be4ef}.morris-cell.piece-O{color:#ff79ae}.morris-note{font-size:11px!important;max-width:620px;margin:10px auto!important}
+#platform-canvas{display:block;width:100%;max-width:800px;margin:10px auto;border:1px solid #41577d;border-radius:12px;background:#10264b;image-rendering:pixelated;touch-action:none}
+.platform-hud{max-width:800px}.platform-hud strong{color:#52e2ef}.platform-controls{display:flex;justify-content:center;flex-wrap:wrap;gap:5px}
+@media(max-width:500px){.morris-board{grid-template-columns:repeat(3,minmax(65px,1fr));max-width:260px}.morris-cell{font-size:34px}.snake-board{gap:1px;padding:4px}}
