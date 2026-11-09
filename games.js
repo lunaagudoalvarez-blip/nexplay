@@ -177,21 +177,40 @@ function play(g){
 document.querySelector('#year').textContent=new Date().getFullYear();render();
 
 
-// Panel de perfil: vista de invitado hasta activar OAuth real.
+// Perfil y selector de avatar local.
 (()=>{
  const drawer=document.querySelector('#profile-drawer'),backdrop=document.querySelector('#profile-backdrop');
  if(!drawer||!backdrop)return;
+ const avatar=document.querySelector('#profile-avatar'),trigger=document.querySelector('#profile-trigger'),picker=document.querySelector('#avatar-picker');
+ const closePicker=()=>{picker.hidden=true;};
+ const openPicker=()=>{picker.hidden=false;};
  const open=()=>{drawer.classList.add('open');backdrop.classList.add('open');document.body.classList.add('profile-open');drawer.setAttribute('aria-hidden','false');};
- const close=()=>{drawer.classList.remove('open');backdrop.classList.remove('open');document.body.classList.remove('profile-open');drawer.setAttribute('aria-hidden','true');};
- document.querySelector('#profile-trigger')?.addEventListener('click',open);
+ const close=()=>{drawer.classList.remove('open');backdrop.classList.remove('open');document.body.classList.remove('profile-open');drawer.setAttribute('aria-hidden','true');closePicker();};
+ function applyAvatar(value){
+   localStorage.setItem('nexplay-avatar',value);
+   if(value.startsWith('data:image/')){avatar.innerHTML='<img alt="Foto de perfil" src="'+value+'">';trigger.innerHTML='<img alt="" src="'+value+'">';}
+   else{avatar.textContent=value;trigger.textContent=value;}
+ }
+ trigger?.addEventListener('click',open);
  document.querySelector('#profile-close')?.addEventListener('click',close);
  backdrop.addEventListener('click',close);
  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
- const edit=()=>{const current=localStorage.getItem('nexplay-display-name')||'Jugador.NexPlay';const value=prompt('¿Qué nombre quieres mostrar en tu perfil?',current);if(value&&value.trim()){const name=value.trim().slice(0,28);localStorage.setItem('nexplay-display-name',name);document.querySelector('#profile-name').textContent='@'+name;document.querySelector('#profile-avatar').textContent=name.slice(0,1).toUpperCase();}};
+ avatar?.addEventListener('click',openPicker);
+ document.querySelector('#profile-edit-icon')?.addEventListener('click',openPicker);
+ document.querySelector('#avatar-picker-close')?.addEventListener('click',closePicker);
+ document.querySelectorAll('[data-avatar]').forEach(b=>b.addEventListener('click',()=>{applyAvatar(b.dataset.avatar);closePicker();}));
+ document.querySelector('#avatar-file')?.addEventListener('change',e=>{
+   const file=e.target.files&&e.target.files[0];if(!file)return;
+   if(!/^image\/(png|jpeg|webp|gif)$/.test(file.type)){alert('Elige una imagen PNG, JPG, WEBP o GIF.');e.target.value='';return;}
+   if(file.size>2*1024*1024){alert('La foto debe ocupar menos de 2 MB.');e.target.value='';return;}
+   const reader=new FileReader();reader.onload=()=>{if(typeof reader.result==='string'){applyAvatar(reader.result);closePicker();}};reader.readAsDataURL(file);e.target.value='';
+ });
+ document.querySelector('#avatar-remove')?.addEventListener('click',()=>{localStorage.removeItem('nexplay-avatar');const initial=(localStorage.getItem('nexplay-display-name')||'Jugador.NexPlay').slice(0,1).toUpperCase();avatar.textContent=initial;trigger.textContent=initial;closePicker();});
+ const edit=()=>{const current=localStorage.getItem('nexplay-display-name')||'Jugador.NexPlay';const value=prompt('¿Qué nombre quieres mostrar en tu perfil?',current);if(value&&value.trim()){const name=value.trim().slice(0,28);localStorage.setItem('nexplay-display-name',name);document.querySelector('#profile-name').textContent='@'+name;if(!localStorage.getItem('nexplay-avatar')){avatar.textContent=name.slice(0,1).toUpperCase();trigger.textContent=name.slice(0,1).toUpperCase();}}};
  document.querySelector('#profile-edit')?.addEventListener('click',edit);
- document.querySelector('#profile-edit-icon')?.addEventListener('click',edit);
  document.querySelector('#profile-complete')?.addEventListener('click',edit);
- const saved=localStorage.getItem('nexplay-display-name');if(saved){document.querySelector('#profile-name').textContent='@'+saved;document.querySelector('#profile-avatar').textContent=saved.slice(0,1).toUpperCase();}
+ const saved=localStorage.getItem('nexplay-display-name');if(saved){document.querySelector('#profile-name').textContent='@'+saved;}
+ const savedAvatar=localStorage.getItem('nexplay-avatar');if(savedAvatar)applyAvatar(savedAvatar);else if(saved){avatar.textContent=saved.slice(0,1).toUpperCase();trigger.textContent=saved.slice(0,1).toUpperCase();}
  document.querySelector('#profile-share')?.addEventListener('click',()=>{const url=location.origin+location.pathname;if(navigator.share)navigator.share({title:'Mi perfil de NexPlay',url}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(url).then(()=>alert('Enlace de NexPlay copiado.'));});
  document.querySelector('#profile-signout')?.addEventListener('click',()=>{close();alert('Estás usando NexPlay como invitado. No hay ninguna cuenta conectada.');});
  document.querySelectorAll('[data-profile-action]').forEach(b=>b.addEventListener('click',()=>alert('Esta sección estará disponible cuando activemos las cuentas de NexPlay.')));
