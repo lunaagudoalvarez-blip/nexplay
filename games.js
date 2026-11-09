@@ -164,3 +164,24 @@ function play(g){
  cleanup=()=>{clearInterval(timer);};
 }
 document.querySelector('#year').textContent=new Date().getFullYear();render();
+
+
+// Panel de perfil: vista de invitado hasta activar OAuth real.
+(()=>{
+ const drawer=document.querySelector('#profile-drawer'),backdrop=document.querySelector('#profile-backdrop');
+ if(!drawer||!backdrop)return;
+ const open=()=>{drawer.classList.add('open');backdrop.classList.add('open');document.body.classList.add('profile-open');drawer.setAttribute('aria-hidden','false');};
+ const close=()=>{drawer.classList.remove('open');backdrop.classList.remove('open');document.body.classList.remove('profile-open');drawer.setAttribute('aria-hidden','true');};
+ document.querySelector('#profile-trigger')?.addEventListener('click',open);
+ document.querySelector('#profile-close')?.addEventListener('click',close);
+ backdrop.addEventListener('click',close);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+ const edit=()=>{const current=localStorage.getItem('nexplay-display-name')||'Jugador.NexPlay';const value=prompt('¿Qué nombre quieres mostrar en tu perfil?',current);if(value&&value.trim()){const name=value.trim().slice(0,28);localStorage.setItem('nexplay-display-name',name);document.querySelector('#profile-name').textContent='@'+name;document.querySelector('#profile-avatar').textContent=name.slice(0,1).toUpperCase();}};
+ document.querySelector('#profile-edit')?.addEventListener('click',edit);
+ document.querySelector('#profile-edit-icon')?.addEventListener('click',edit);
+ document.querySelector('#profile-complete')?.addEventListener('click',edit);
+ const saved=localStorage.getItem('nexplay-display-name');if(saved){document.querySelector('#profile-name').textContent='@'+saved;document.querySelector('#profile-avatar').textContent=saved.slice(0,1).toUpperCase();}
+ document.querySelector('#profile-share')?.addEventListener('click',()=>{const url=location.origin+location.pathname;if(navigator.share)navigator.share({title:'Mi perfil de NexPlay',url}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(url).then(()=>alert('Enlace de NexPlay copiado.'));});
+ document.querySelector('#profile-signout')?.addEventListener('click',()=>{close();alert('Estás usando NexPlay como invitado. No hay ninguna cuenta conectada.');});
+ document.querySelectorAll('[data-profile-action]').forEach(b=>b.addEventListener('click',()=>alert('Esta sección estará disponible cuando activemos las cuentas de NexPlay.')));
+})();
