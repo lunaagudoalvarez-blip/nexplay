@@ -406,3 +406,11 @@ footer{border-color:#282936}
 .friend-avatar{width:31px;height:31px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#6243e8,#21c9cb);font-size:12px;font-weight:900}
 .friend-row strong{flex:1;font-size:11px}.friend-row button{border:0;background:transparent;color:#aab0c4;font-size:19px;cursor:pointer}
 @media(max-width:420px){.profile-game-list{grid-template-columns:1fr 1fr}.collection-tab{font-size:10px}}
+
+/* Corrección de carga de portadas: imagen individual visible sin adornos superpuestos */
+.game-art{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;min-height:170px}
+.game-art:before,.game-art:after{display:none!important;content:none!important}
+.game-art .art-label{font-size:clamp(15px,2vw,22px);padding:7px 10px;border-radius:8px;background:#07101dcc;backdrop-filter:blur(5px)}
+.continue-card,.feature-mini,.feature-main{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+.continue-card:before,.feature-mini:before,.feature-main:before{display:none!important;content:none!important}
+.recommendation-art,.profile-game-cover{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
