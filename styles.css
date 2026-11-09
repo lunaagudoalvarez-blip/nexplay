@@ -347,3 +347,36 @@ footer{border-color:#282936}
 .avatar-upload span{font-size:19px}
 .avatar-remove{width:100%;margin-top:8px;padding:8px;border:1px solid #454766;border-radius:9px;background:transparent;color:#c8c8d9;font-size:11px;cursor:pointer}
 .profile-trigger img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+
+
+/* Secciones de perfil: Perfil, logros y amigos */
+.profile-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 14px 20px;padding:5px;border-radius:12px;background:#11121c;border:1px solid #34364a}
+.profile-tab{border:0;border-radius:9px;padding:10px 5px;background:transparent;color:#aeb0c4;font-size:12px;font-weight:800;cursor:pointer}
+.profile-tab.active{background:linear-gradient(100deg,#673cff,#4930b6);color:#fff;box-shadow:0 4px 14px #5734dc55}
+.profile-view{display:none}.profile-view.active{display:block}
+.profile-page-head{padding:8px 20px 17px;text-align:center}
+.profile-kicker{font-size:9px;letter-spacing:2px;color:#9a83ff;font-weight:900}
+.profile-page-head h2{margin:8px 0 6px;font:800 23px 'Space Grotesk'}
+.profile-page-head p{margin:0;color:#aaaec1;font-size:12px;line-height:1.5}
+.achievement-summary{margin:0 15px 14px;padding:19px;border-radius:15px;background:linear-gradient(135deg,#322064,#1c254b);display:grid;gap:4px;text-align:center}
+.achievement-summary strong{font:900 35px 'Space Grotesk';color:#c7aaff}
+.achievement-summary span{font-size:13px;font-weight:800}
+.achievement-summary small{font-size:10px;color:#b8b4d0}
+.achievement-list{padding:0 14px;display:grid;gap:9px}
+.achievement-card{display:flex;align-items:center;gap:11px;padding:12px;border:1px solid #393b50;border-radius:12px;background:#222431}
+.achievement-icon{width:39px;height:39px;flex:0 0 39px;display:grid;place-items:center;border-radius:11px;background:#34265f;color:#c8b2ff;font-size:19px}
+.achievement-card b{font-size:12px}.achievement-card p{margin:4px 0 0;color:#aeb0c1;font-size:10px}
+.achievement-card em{margin-left:auto;color:#a9a0c9;font-size:9px;font-style:normal;white-space:nowrap}
+.friends-invite-card{margin:0 14px 15px;padding:18px 14px;text-align:center;border:1px solid #3a3c55;border-radius:16px;background:linear-gradient(145deg,#24243b,#171a2b)}
+.friends-art{width:54px;height:54px;margin:0 auto 10px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(135deg,#28d8bc,#5a39e8);font-size:27px;box-shadow:0 8px 25px #4c3acb55}
+.friends-invite-card h3{margin:5px 0;font:800 18px 'Space Grotesk'}
+.friends-invite-card>p{font-size:11px;line-height:1.5;color:#b7b8c9}
+.invite-link-row{display:flex;gap:6px;margin-top:14px}
+.invite-link-row input{min-width:0;flex:1;border:1px solid #45465c;border-radius:9px;background:#111522;color:#d8d9e8;padding:10px;font-size:10px}
+.invite-link-row button,.friend-share-button{border:0;border-radius:9px;padding:10px 12px;background:#6942ed;color:white;font-size:11px;font-weight:800;cursor:pointer}
+.friend-share-button{width:100%;margin-top:9px;background:#2bce9e;color:#081b22}
+.friends-empty{margin:0 14px;padding:18px 14px;text-align:center;border:1px dashed #45465b;border-radius:14px}
+.friends-empty>span{font-size:26px;color:#9a83ff}.friends-empty b{display:block;margin:8px 0;font-size:12px}
+.friends-empty p,.friends-note{font-size:10px;line-height:1.5;color:#aeb0c1}
+.friends-note{padding:0 18px;text-align:center}
+@media(max-width:420px){.achievement-card em{display:none}.profile-tabs{margin-left:10px;margin-right:10px}}
