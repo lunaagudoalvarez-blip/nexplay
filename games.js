@@ -28,9 +28,19 @@ const games = [
 ];
 const grid=document.querySelector('#games-grid'),search=document.querySelector('#search'),empty=document.querySelector('#empty'),modal=document.querySelector('#modal'),area=document.querySelector('#game-area');
 const STORE='nexplay-player-v2';
-let state={favorites:[],votes:{}};try{state=Object.assign(state,JSON.parse(localStorage.getItem(STORE)||'{}'));}catch(e){}
+const validGameIds=new Set(games.map(g=>g.id));
+let state={favorites:[],votes:{}};
+try{
+ const stored=JSON.parse(localStorage.getItem(STORE)||'{}');
+ if(stored&&typeof stored==='object'&&!Array.isArray(stored)){
+  state.favorites=Array.isArray(stored.favorites)?[...new Set(stored.favorites.filter(id=>validGameIds.has(id)))]:[];
+  state.votes=stored.votes&&typeof stored.votes==='object'&&!Array.isArray(stored.votes)?Object.fromEntries(Object.entries(stored.votes).filter(([id,v])=>validGameIds.has(id)&&['like','dislike'].includes(v))):{};
+ }
+}catch(e){}
 let filter='Todos',cleanup=()=>{},current=null;const $=s=>area.querySelector(s);
-function save(){try{localStorage.setItem(STORE,JSON.stringify(state));}catch(e){}}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(state));}catch(e){console.warn('No se pudo guardar el progreso local.',e);}}
+function readRecent(){try{const value=JSON.parse(localStorage.getItem('nexplay-recent-v1')||'[]');return Array.isArray(value)?value.filter(id=>validGameIds.has(id)):[];}catch(e){return[];}}
+function writeRecent(ids){try{localStorage.setItem('nexplay-recent-v1',JSON.stringify(ids.slice(0,12)));}catch(e){}}
 function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
 /* Portadas 2D originales para TODOS los juegos. SVG autocontenido: no depende de archivos externos. */
@@ -73,7 +83,7 @@ function cover(game,index){
  return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
 }
 
-function renderHome(){const recent=JSON.parse(localStorage.getItem('nexplay-recent-v1')||'[]');const list=recent.map(id=>games.find(g=>g.id===id)).filter(Boolean).slice(0,10);const items=list.length?list:games.slice(0,10);const row=document.querySelector('#continue-row');if(row)row.innerHTML=items.map(g=>'<button class="continue-card" data-home-game="'+g.id+'" style="background-image:linear-gradient(0deg,#070b19dd,transparent 78%),url(&quot;'+cover(g,games.indexOf(g))+'&quot;)"><strong>'+safe(g.name)+'</strong></button>').join('');const mini=document.querySelector('#feature-mini-grid');if(mini)mini.innerHTML=games.filter(g=>g.id!=='snake-arena').slice(0,4).map(g=>'<button class="feature-mini" data-home-game="'+g.id+'" style="background-image:linear-gradient(0deg,#070b19dd,transparent 78%),url(&quot;'+cover(g,games.indexOf(g))+'&quot;)"><strong>'+safe(g.name)+'</strong></button>').join('');const featured=document.querySelector('#feature-main');if(featured)featured.style.backgroundImage='linear-gradient(0deg,#070b19ee,transparent 80%),url(&quot;'+cover(games.find(g=>g.id==='snake-arena'),games.findIndex(g=>g.id==='snake-arena'))+'&quot;)';}
+function renderHome(){const recent=readRecent();const list=recent.map(id=>games.find(g=>g.id===id)).filter(Boolean).slice(0,10);const items=list.length?list:games.slice(0,10);const row=document.querySelector('#continue-row');if(row)row.innerHTML=items.map(g=>'<button class="continue-card" data-home-game="'+g.id+'" style="background-image:linear-gradient(0deg,#070b19dd,transparent 78%),url(&quot;'+cover(g,games.indexOf(g))+'&quot;)"><strong>'+safe(g.name)+'</strong></button>').join('');const mini=document.querySelector('#feature-mini-grid');if(mini)mini.innerHTML=games.filter(g=>g.id!=='snake-arena').slice(0,4).map(g=>'<button class="feature-mini" data-home-game="'+g.id+'" style="background-image:linear-gradient(0deg,#070b19dd,transparent 78%),url(&quot;'+cover(g,games.indexOf(g))+'&quot;)"><strong>'+safe(g.name)+'</strong></button>').join('');const featured=document.querySelector('#feature-main');if(featured)featured.style.backgroundImage='linear-gradient(0deg,#070b19ee,transparent 80%),url(&quot;'+cover(games.find(g=>g.id==='snake-arena'),games.findIndex(g=>g.id==='snake-arena'))+'&quot;)';}
 function homeColor(id){const colors=['linear-gradient(135deg,#2b8da5,#25235d)','linear-gradient(135deg,#b04c37,#3a1c4f)','linear-gradient(135deg,#8c9c35,#203c4e)','linear-gradient(135deg,#1e8c73,#172d55)','linear-gradient(135deg,#3b55a4,#7138a8)'];return colors[Math.abs(id.split('').reduce((a,c)=>a+c.charCodeAt(0),0))%colors.length];}
 document.querySelector('#continue-row')?.addEventListener('click',e=>{const b=e.target.closest('[data-home-game]');if(b)openGame(games.find(g=>g.id===b.dataset.homeGame));});
 document.querySelector('#feature-mini-grid')?.addEventListener('click',e=>{const b=e.target.closest('[data-home-game]');if(b)openGame(games.find(g=>g.id===b.dataset.homeGame));});
@@ -93,7 +103,7 @@ grid.addEventListener('click',e=>{const playBtn=e.target.closest('[data-game]');
 function syncTools(){if(!current)return;const v=state.votes[current.id]||'';const fav=state.favorites.includes(current.id);document.querySelector('#like-game').classList.toggle('active',v==='like');document.querySelector('#dislike-game').classList.toggle('dislike-active',v==='dislike');document.querySelector('#favorite-game').classList.toggle('active',fav);document.querySelector('#favorite-game').innerHTML=(fav?'♥':'♡')+' <span>'+(fav?'Guardado':'Favorito')+'</span>';document.querySelector('#like-count').textContent=v==='like'?'1':'0';document.querySelector('#dislike-count').textContent=v==='dislike'?'1':'0';}
 
 const COMMENT_STORE='nexplay-comments-v1';
-let commentData={};try{commentData=JSON.parse(localStorage.getItem(COMMENT_STORE)||'{}')||{};}catch(e){}
+let commentData={};try{const storedComments=JSON.parse(localStorage.getItem(COMMENT_STORE)||'{}');if(storedComments&&typeof storedComments==='object'&&!Array.isArray(storedComments))commentData=storedComments;}catch(e){}
 const playGuides={
  platformer:'Completa los 100 niveles de esta aventura 2D original. Muévete con A/D o las flechas, salta con espacio y recoge monedas. Llega a la puerta de salida para desbloquear el siguiente nivel.',
  morris:'Juegan dos personas por turnos. Cada una coloca tres fichas en casillas vacías. Cuando las seis estén colocadas, mueve una de tus fichas a una casilla vecina libre. Gana quien consiga alinear sus tres fichas en horizontal, vertical o diagonal. Si juegas online, aún hace falta activar un servidor de partidas.',
@@ -118,19 +128,19 @@ const playGuides={
 function renderComments(){
  if(!current)return;
  const list=document.querySelector('#comment-list');if(!list)return;
- const items=commentData[current.id]||[];
+ const items=Array.isArray(commentData[current.id])?commentData[current.id]:[];
  list.innerHTML=items.length?items.slice().reverse().map(item=>'<article class="comment-item"><strong>'+safe(item.name)+'</strong><p>'+safe(item.text)+'</p><time>'+safe(item.date)+'</time></article>').join(''):'<p class="no-comments">Todavía no hay comentarios. ¡Sé el primero!</p>';
 }
 function renderRecommendations(){
  const box=document.querySelector('#game-recommendations');if(!box||!current)return;
- const picks=games.filter(g=>g.id!==current.id).sort((a,b)=>(b.category===current.category)-(a.category===current.category)).slice(0,4);
+ const picks=games.filter(g=>g.id!==current.id).sort((a,b)=>(Number(b.category===current.category)-Number(a.category===current.category))).slice(0,4);
  box.innerHTML=picks.map(g=>'<button type="button" class="recommendation" data-recommend="'+g.id+'"><span class="recommendation-art" style="background-image:url(&quot;'+cover(g,games.indexOf(g))+'&quot;)"></span><span>'+safe(g.name)+'</span></button>').join('');
 }
 document.querySelector('#comment-form')?.addEventListener('submit',e=>{
  e.preventDefault();if(!current)return;
  const input=document.querySelector('#comment-text'),name=document.querySelector('#comment-name');
  const value=input.value.trim();if(!value)return;
- const entries=commentData[current.id]||(commentData[current.id]=[]);
+ const entries=Array.isArray(commentData[current.id])?commentData[current.id]:(commentData[current.id]=[]);
  entries.push({name:(name.value.trim()||'Jugador').slice(0,24),text:value.slice(0,500),date:new Date().toLocaleString('es-ES')});
  try{localStorage.setItem(COMMENT_STORE,JSON.stringify(commentData));}catch(err){}
  input.value='';renderComments();
@@ -140,14 +150,15 @@ document.querySelector('#game-recommendations')?.addEventListener('click',e=>{
 });
 
 function openGame(g){
- const recent=JSON.parse(localStorage.getItem('nexplay-recent-v1')||'[]').filter(id=>id!==g.id);recent.unshift(g.id);localStorage.setItem('nexplay-recent-v1',JSON.stringify(recent.slice(0,12)));renderHome();if(!g)return;cleanup();cleanup=()=>{};current=g;document.querySelector('#game-title').textContent=g.name;document.querySelector('#game-category').textContent=g.category.toUpperCase()+' · NEXPLAY ORIGINAL';modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';syncTools();document.querySelector('#how-to-play').textContent=playGuides[g.mode]||g.desc+' Sigue las indicaciones de la partida y consigue la mejor puntuación.';document.querySelector('#game-controls-note').textContent='Controles: ratón o pantalla táctil. Si el juego muestra flechas, también puedes usar las teclas de dirección.';renderRecommendations();renderComments();play(g);}
+ if(!g||!validGameIds.has(g.id)){console.warn('Se ha intentado abrir un juego que no existe.');return;}
+ const recent=readRecent().filter(id=>id!==g.id);recent.unshift(g.id);writeRecent(recent);renderHome();cleanup();cleanup=()=>{};current=g;document.querySelector('#game-title').textContent=g.name;document.querySelector('#game-category').textContent=g.category.toUpperCase()+' · NEXPLAY ORIGINAL';modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';syncTools();document.querySelector('#how-to-play').textContent=playGuides[g.mode]||g.desc+' Sigue las indicaciones de la partida y consigue la mejor puntuación.';document.querySelector('#game-controls-note').textContent='Controles: ratón o pantalla táctil. Si el juego muestra flechas, también puedes usar las teclas de dirección.';renderRecommendations();renderComments();play(g);}
 function closeGame(){cleanup();cleanup=()=>{};modal.classList.remove('open');modal.setAttribute('aria-hidden','true');area.innerHTML='';document.body.style.overflow='';current=null;}
 document.querySelector('#close').addEventListener('click',closeGame);modal.addEventListener('click',e=>{if(e.target===modal)closeGame();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeGame();});
 document.querySelector('#like-game').addEventListener('click',()=>{if(!current)return;state.votes[current.id]=state.votes[current.id]==='like'?'':'like';save();syncTools();});
 document.querySelector('#dislike-game').addEventListener('click',()=>{if(!current)return;state.votes[current.id]=state.votes[current.id]==='dislike'?'':'dislike';save();syncTools();});
 document.querySelector('#favorite-game').addEventListener('click',()=>{if(current)toggleFavorite(current.id);});
 document.querySelector('#fullscreen-game').addEventListener('click',async()=>{try{if(!document.fullscreenElement)await modal.requestFullscreen();else await document.exitFullscreen();}catch(e){document.querySelector('#fullscreen-game').textContent='Pantalla completa no disponible';}});
-document.querySelector('#google-login').addEventListener('click',()=>{alert('El acceso con Google necesita configurar un proyecto OAuth de Google y autorizar el dominio de NexPlay. Todavía no está activado. Puedes jugar como invitado; tus favoritos y votos se guardan en este navegador.');});
+// El botón de acceso con Google aún no está presente ni configurado; no registrar eventos sobre elementos inexistentes.
 function play(g){
  let score=0,seconds=45,timer=null,active=false,first=null,position=1,stepCount=0;
  area.innerHTML='<p>'+safe(g.desc)+' Completa el reto y supera tu mejor puntuación.</p><div class="game-status" id="status">Puntos: 0 · Tiempo: 45</div><div class="challenge-board" id="board"></div><button class="game-action" id="start">Empezar partida</button>';
@@ -263,7 +274,7 @@ document.querySelector('#year').textContent=new Date().getFullYear();render();
  let activeCollection='liked';
  const collectionTabs=[...drawer.querySelectorAll('[data-collection]')];
  collectionTabs.forEach(b=>b.addEventListener('click',()=>{activeCollection=b.dataset.collection;collectionTabs.forEach(x=>x.classList.toggle('active',x===b));renderCollection(activeCollection);}));
- function renderCollection(which){const box=$p('#profile-game-list');if(!box)return;let items=[];if(which==='recent'){try{items=JSON.parse(localStorage.getItem('nexplay-recent-v1')||'[]').map(id=>games.find(g=>g.id===id)).filter(Boolean);}catch(e){items=[];}}else if(which==='favorites'){items=(state.favorites||[]).map(id=>games.find(g=>g.id===id)).filter(Boolean);}else{items=Object.keys(state.votes||{}).filter(id=>state.votes[id]==='like').map(id=>games.find(g=>g.id===id)).filter(Boolean);}
+ function renderCollection(which){const box=$p('#profile-game-list');if(!box)return;let items=[];if(which==='recent'){items=readRecent().map(id=>games.find(g=>g.id===id)).filter(Boolean);}else if(which==='favorites'){items=(state.favorites||[]).map(id=>games.find(g=>g.id===id)).filter(Boolean);}else{items=Object.keys(state.votes||{}).filter(id=>state.votes[id]==='like').map(id=>games.find(g=>g.id===id)).filter(Boolean);}
  if(!items.length){box.innerHTML='<p class="profile-empty">'+(which==='liked'?'Todavía no has marcado ningún juego con Me gusta.':which==='favorites'?'Aún no tienes juegos favoritos.':'Todavía no has jugado a ningún juego.')+'</p>';return;}
  box.innerHTML=items.map(g=>'<button type="button" class="profile-game-card" data-profile-game="'+g.id+'"><span class="profile-game-cover" style="background-image:url(&quot;'+cover(g,games.indexOf(g))+'&quot;)"></span><strong>'+safe(g.name)+'</strong><small>'+safe(g.category)+'</small></button>').join('');}
  $p('#profile-game-list')?.addEventListener('click',e=>{const btn=e.target.closest('[data-profile-game]');if(!btn)return;const game=games.find(g=>g.id===btn.dataset.profileGame);if(game){close();openGame(game);}});
