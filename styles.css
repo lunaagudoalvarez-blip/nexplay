@@ -524,3 +524,13 @@ body{background:radial-gradient(ellipse at 68% 2%,#28205255 0,transparent 38%),r
 .nx-jump-obstacle{position:absolute;left:100%;bottom:22px;width:27px;height:39px;background:#ff8b65;border-radius:7px}
 @keyframes nx-hop{0%,100%{transform:translateY(0)}45%{transform:translateY(-82px)}}
 @media(max-width:560px){.nx-runner{height:220px}.nx-match-board{gap:4px;padding:6px}.nx-fight-seq{font-size:22px;letter-spacing:4px}}
+
+.nx-race-track,.nx-laser-arena{height:250px;position:relative;overflow:hidden;border:1px solid #ffffff20;border-radius:15px;background:linear-gradient(#243c60,#101a30)}
+.nx-race-road{position:absolute;inset:0 15%;border-left:4px solid #ffffff55;border-right:4px solid #ffffff55;background:linear-gradient(90deg,transparent 32%,#ffffff42 33%,transparent 34%,transparent 66%,#ffffff42 67%,transparent 68%)}
+.nx-race-road:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 30px,#ffffff35 31px 46px,transparent 47px 76px);opacity:.4}
+#race-car{position:absolute;left:50%;bottom:25px;width:44px;height:62px;border-radius:12px;background:linear-gradient(#7af1ff,#4e62d2);display:grid;place-items:center;font-weight:900;transform:translateX(-50%);transition:left .12s}
+.nx-race-hud,.nx-laser-info{display:flex;justify-content:space-between;gap:8px;padding:10px;color:#f0f2ff;font-size:13px}
+.nx-laser-lanes{position:absolute;inset:0 15%;border-left:3px dashed #ffffff55;border-right:3px dashed #ffffff55;background:linear-gradient(90deg,transparent 32%,#ffffff30 33%,transparent 34%,transparent 66%,#ffffff30 67%,transparent 68%)}
+#laser-player{position:absolute;left:50%;bottom:20px;width:42px;height:48px;border-radius:10px;background:linear-gradient(#7af1ff,#4e62d2);display:grid;place-items:center;font-weight:900;transform:translateX(-50%);transition:left .12s;z-index:2}
+#laser-beam{position:absolute;top:0;bottom:0;width:4px;left:50%;background:#ff3e75;opacity:0;box-shadow:0 0 18px #ff3e75}
+#laser-beam.warning{opacity:1;width:30%;background:#ff315577;box-shadow:0 0 24px #ff3155}
